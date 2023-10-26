@@ -218,7 +218,7 @@
 	\]
 	Значит
 	\[
-		\exists q_{m - 1}' :\: \Delta(q_{m - 1}) = q_m',\, \langle q_m',\, w_m\rangle \to q_m \Rightarrow \langle q_{m - 1},\, w_m\rangle \vdash_M \langle q_m,\, \varepsilon\rangle
+		\exists q_{m - 1}' \in \Delta_M(q_{m - 1},\, \varepsilon),\, \langle q_{m - 1}',\, w_m\rangle \to q_m \Rightarrow \langle q_{m - 1},\, w_m\rangle \vdash_M \langle q_m,\, \varepsilon\rangle
 	\]
 	Также найдём финальное состояние:
 	\[
@@ -249,7 +249,7 @@
 \begin{proof}
 	Обозначим $\Delta(S,\, w) = \cup_{q \in S} \Delta(q,\, w),\, w \in \Sigma^*,\, S \subset Q$.
 
-	Построим ДКА $M' = \langle 2^Q,\,\Sigma,\, \Delta',\, {q_0},\, F' \rangle$, где:
+	Построим ДКА $M' = \langle 2^Q,\,\Sigma,\, \Delta',\, \{q_0\},\, F' \rangle$, где:
 	\begin{itemize}
 		\item $F' = \{S \subset Q \:|\: S \cap F \neq \emptyset\}$
 		\item $\Delta' = \{(\langle S,\, a\rangle \to \Delta(S,\, a)) \:|\: S \subset Q\}$
@@ -278,7 +278,7 @@
 				            \end{align*}
 				      \item Воспользовавшись предположением индукции для слов длины $1$ и $n - 1$, а также свойством аддитивности множеств $\Delta$, получим:
 				            \[
-					            \Delta(\Delta(q_0,\, w'),\, a) = \Delta(\Delta'(\{q_0\},\, w'),\, a) = \Delta'(\Delta'(\{q_0\},\, w'),\, a) = \Delta'(\{q_0\},\, w'a)
+					            \Delta(\Delta(\{q_0\},\, w'),\, a) = \Delta(\Delta'(\{q_0\},\, w'),\, a) = \Delta'(\Delta'(\{q_0\},\, w'),\, a) = \Delta'(\{q_0\},\, w'a)
 				            \]
 			      \end{itemize}
 
@@ -510,7 +510,7 @@
 
 	Тогда из того, что в $M$ нет эквивалентных состояний:
 	\begin{align*}
-		\forall w_1,\, w_2 \in \Sigma^* :\: \Delta(q_0,\, w_1) \neq \Delta(q_0,\, w_2) \Rightarrow \exists u :\: \Delta(\Delta(q_0,\, w_1),\, u) \not\in F,\, \Delta(\Delta(q_0,\, w_2),\, u) \in F \Rightarrow \\
+		\forall w_1,\, w_2 \in \Sigma^* :\: \Delta(q_0,\, w_1) \not\sim \Delta(q_0,\, w_2) \Rightarrow \exists u :\: \Delta(\Delta(q_0,\, w_1),\, u) \not\in F,\, \Delta(\Delta(q_0,\, w_2),\, u) \in F \Rightarrow \\
 		\exists u :\: \Delta(q_0,\, w_1u) \not\in F,\, \Delta(q_0,\, w_2u) \in F \Rightarrow \exists u :\: w_1u \not\in L,\, w_2u \in L \Rightarrow                                                             \\ w_1 \not\sim_L w_2
 	\end{align*}
 	Тогда $\vert\Sigma^*/\sim_L\vert \geq \vert Q\vert$, но $\forall$ ПДКА $M' :\: |\Sigma^*/\sim_L| \leq |Q'| \Rightarrow \vert Q\vert \leq \vert Q'\vert \Rightarrow M$ -- минимальный.
@@ -610,6 +610,11 @@
 		\forall a \in \Sigma :\: \Delta(q_1,\, a) \underset{i}{\sim} \Delta(q_2,\,a) \Rightarrow q_1 \underset{i + 1}{\sim} q_2
 	\end{align*}
 	Теперь понятно, что, если $\vert Q / \underset{i}{\sim}\vert = \vert Q / \underset{i + 1}{\sim}\vert$, то $\vert Q / \underset{i}{\sim}\vert = \vert Q / \sim \vert$
+
+	Заметим, что $\vert Q / \sim_0\vert = \vert\{F,\, Q \setminus F\}\vert = 2$, но $\vert Q / \sim_i\vert$ неубывает и стабилизируется $\Rightarrow$
+	\[
+		\vert Q / \sim_i\vert \leq \vert Q / \sim\vert \leq \vert Q\vert
+	\]
 \end{proof}
 
 \subsection*{Теорема Майхилла-Нероуда}
@@ -786,7 +791,7 @@
 	\begin{itemize}
 		\item База индукции -- 0 шагов:
 		      \begin{align*}
-			      \langle A,\, w\rangle \vdash_{M,\, 0} \langle B,\, \varepsilon\rangle \Rightarrow A = b,\, w = \varepsilon \Rightarrow A \vdash_G \varepsilon B
+			      \langle A,\, w\rangle \vdash_{M,\, 0} \langle B,\, \varepsilon\rangle \Rightarrow A = B,\, w = \varepsilon \Rightarrow A \vdash_G \varepsilon B
 		      \end{align*}
 		\item Для перехода представим произвольное слово $w = vu,\, u \in \Sigma$:
 		      \begin{align*}
@@ -795,7 +800,7 @@
 	\end{itemize}
 	Теперь второй пункт для произвольного $w = vu$:
 	\begin{align*}
-		\langle A,\, w\rangle \vdash_M \langle C,\, u\rangle \vdash_{M,\,1} \langle q_f,\, \varepsilon\rangle \Rightarrow A \vdash_G vC,\, C \vdash_G u \Rightarrow A \vdash_G vu = w
+		\langle A,\, v\rangle \vdash_M \langle C,\, u\rangle \vdash_{M,\,1} \langle q_f,\, \varepsilon\rangle \Rightarrow A \vdash_G vC,\, C \vdash_G u \Rightarrow A \vdash_G vu = w
 	\end{align*}
 	Перейдём к доказательству $\Leftarrow$ для обоих пунктов:
 
@@ -1146,7 +1151,7 @@
     \item Переход при Predict
     \begin{itemize}
       \item $(B \to \cdot\gamma,\, j) \in D_j$ появилась при Predict после ситуации $(A \to \alpha\cdot B \beta,\, i) \in D_j$
-      \item ПредположениеL $S' \vdash w[0:i]A\psi \vdash_1 w[0:i]\alpha B \beta\psi$
+      \item Предположение $S' \vdash w[0:i]A\psi \vdash_1 w[0:i]\alpha B \beta\psi$
       \item $\alpha \vdash w[i:j] \Rightarrow w[0:i]\alpha \vdash w[0:j]$
       \item $S' \vdash w[0:i]\alpha B\beta\psi \vdash w[0:j]B\beta\psi \vdash_1 w[0:j]\gamma\beta\psi$
     \end{itemize}
@@ -1184,17 +1189,11 @@
       \item $(A \to \alpha'b\cdot B,\, i) \in D_j$ по Scan
     \end{itemize}
     \item $\alpha = \alpha' B$
-    \begin{itemize}
-      \item $S' \vdash_{k + t + 1}w[0:p]B\beta\psi,\, B \vdash_{l - t - 1} w[p:j]$
-      \item Предположение $(j,\, k + l,\, l - t - 1) :\: (B \to \gamma\cdot,\, p) \in D_j$
-      \item $S' \vdash_k w[0:i]A\psi,\, \alpha' \vdash_t w[i:p]$
-      \item Предположение $(p,\, k + t,\, t) :\: (A \to \alpha'\cdot B\beta\, i) \in D_p \Rightarrow (A \to \alpha'B\cdot\beta,\, i) \in D_j$ -- по Complete
-    \end{itemize}
+    
+    \includegraphics[scale=0.35]{../media/FullERli2.png}
     \item $\alpha = \varepsilon$
-    \begin{itemize}
-      \item $S' \vdash w[0 : p]B\psi',\, \gamma \vdash_t w[p:i]$
-      \item Предположение $(j,\, k - 1,\, t):\: (B \to \gamma \cdot A\delta,\, p) \in D_i,\, (A \to \beta) \in P \Rightarrow (A \to \cdot\beta,\, i) \in D_i$ -- по Predict
-    \end{itemize}
+
+    \includegraphics[scale=0.4]{../media/FullERli3.png}
   \end{enumerate}
 \end{itemize}
 
