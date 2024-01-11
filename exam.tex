@@ -1435,115 +1435,6 @@
 	\end{itemize}
 \end{proof}
 
-\subsection{Анализатор перенос-свёртка}
-Смотри конспект Сорокина, который можно распечатать и принести на экзамен
-
-\subsection{Операция перехода для LR-ситуаций}
-Смотри конспект Сорокина, который можно распечатать и принести на экзамен
-
-\subsection{Алгоритм построения LR-таблицы по LR-ситуациям}
-Смотри конспект Сорокина, который можно распечатать и принести на экзамен
-
-\subsection{Алгоритм разбора по LR-таблице}
-Смотри конспект Сорокина, который можно распечатать и принести на экзамен
-
-\subsection{ДМП-автоматы}
-\begin{definition}
-	Два перехода в МП-автомате: $\langle q_1,\, u_1,\, \alpha_1\rangle \to \langle q_1',\, \beta_1'\rangle$ и $\langle q_2,\, u_2,\, \alpha_2\rangle \to \langle q_2',\, \beta_2'\rangle$ называются \textbf{совместными}, если выполняются следующие условия:
-	\begin{itemize}
-		\item $q_1 = q_2$
-		\item $u_1 \sqsubset u_2$ или $u_2 \sqsubseteq u_1$
-		\item $\alpha_1 \sqsubseteq \alpha_2$ или $\alpha_2 \sqsubseteq \alpha_1$
-	\end{itemize}
-\end{definition}
-
-\begin{definition}
-	МП-автомат называется детерминированным, если в нём нет совместных переходов.
-\end{definition}
-
-\begin{definition}
-	Пусть $M$ -- ДМП-автомат. Тогда языком, который задаёт данный автомат, называется
-	\[
-		L(M) = \{w \:\vert\: \exists q \in F :\: \langle q_0,\,w\$,\,\varepsilon\rangle\vdash\langle q,\,\varepsilon,\,\varepsilon\rangle\}
-	\]
-\end{definition}
-
-\begin{lemma}
-	Любой ДМП-автомат эквивалентен ДМП автомату с переходами
-	\[
-		\langle q_1,\,u,\,\alpha\rangle\to\langle q_2,\,\beta\rangle,\, \vert u\vert +\vert \alpha\vert \leq 1
-	\]
-\end{lemma}
-
-\begin{proof}
-	Разбиваем переходы совместно\dots
-\end{proof}
-
-\begin{theorem}
-	Если $l$ -- длина самой длинной строки, которая может быть записана в ходе перехода в ДМП-автомате, то существует такая константа $N = F(\vert Q\vert,\, \vert \Gamma\vert,\, l)$ такая, что если $\langle q,\,\varepsilon,\, A\rangle \vdash_N\langle q',\,\varepsilon,\, \alpha\rangle,\, \vert \alpha\vert > 0$, то в ДМП-автомате возникнет цикл в конфигурации.
-\end{theorem}
-
-\begin{proof}
-	Если длина стека в пути не больше $\vert Q\vert\vert\Gamma\vert l$, то в качестве $N$ возьмём
-	\[
-		N = \vert Q\vert(1 + \vert \Gamma\vert + \vert\Gamma\vert^2 +\cdots + \vert\Gamma\vert^{\vert Q\vert\vert\Gamma\vert l})
-	\]
-	где второй множитель обозначает максимальное число стеков длины $\leq \vert Q\vert\vert\Gamma\vert l$. Тогда по принципу дирихле найдётся одна конфигурация.
-
-	Иначе
-	\[
-		\exists \langle q_0,\,\varepsilon,\,A\rangle\vdash_N\langle q',\,\varepsilon,\,\beta\rangle :\: \vert\beta\vert \geq \vert Q\vert\vert\Gamma\vert l + 1
-	\]
-
-	Давайте отмечать на нашем пути состояния так, чтобы длина стека у полученной подвыборки строго возрастала.
-
-	Так как за переход длина стека меняется не более чем на $l$, то мы отметим хотя бы $\vert Q\vert\vert\Gamma\vert +1$ конфигураций.
-
-	Тогда по принципу Дирихле $\exists$ два состояния:
-	\[
-		\langle q_1,\, \varepsilon,\, \alpha A\rangle,\,\langle q_1,\, \varepsilon,\, \alpha\gamma A\rangle
-	\]
-\end{proof}
-
-\begin{theorem}
-	Количество Shift'ов в LR-алгоритме ограничено сверху $\vert w\vert$, а количество Reduce'ов $\leq \vert w\vert\cdot N\cdot c$
-\end{theorem}
-
-\begin{proof}
-	Введём потенциал, который является суммой:
-	\begin{itemize}
-		\item Числа терминальных символов грамматики на стеке
-		\item Числа нетерминальных символов грамматики на стеке
-		\item Удвоенного числа непрочитанных букв в слове
-	\end{itemize}
-	При Shift имеем +1 на стеке, но -2 непрочитанных букв.
-
-	Отметим ситуации, после которых стек уменьшался -- после них потенциал уменьшается хотя бы на 1.
-
-	Имея изначальный потенциал $2\vert w\vert$ и зная, что в конце он равен $0$, то получим, что количество ситуаций, разобранных выше, ограничено.
-
-	Остаётся разобраться ситуации, когда Reduce не уменьшает стек, это происходит при обработке правил
-	\[
-		A \to \varepsilon ;\;\;\;\; A \to B
-	\]
-	Очевидно, таких правил ограниченное количество. Также, мы не можем прийти в соответствующую им ситуацию несколько раз, так как тогда мы зациклимся.
-\end{proof}
-
-\subsection{Приведение LR-алгоритма к распознаванию ДМП-автоматом}
-\begin{proposition}
-	Работа LR(1) алгоритма эмулируется работой ДМП-автомата.
-\end{proposition}
-
-\begin{proof}
-	В качестве стека ДМП-автомата будем использовать стек LR-алгоритма (последовательность символ-вершина-\dots). То есть при операции Shift:
-	\[
-		\langle q_i,\, a,\, \varepsilon\rangle \to \langle \text{GOTO}(q_i,\, a),\, a\text{GOTO}(q_i,\, a)\rangle
-	\]
-	При операции Reduce снимаем со стека путь, переходим в соответствующую ситуацию из LR-таблицы и кладём на стек тот нетерминал, который считали.
-
-	Почему этот автомат будет ДМП? Заметим, что свойство детерминированности эквивалентно отстутствию конфликтов, которых у нас нет по условию.
-\end{proof}
-
 \section{Парсеры}
 \subsection{Корректность алгоритма Эрли}
 \begin{definition}
@@ -1679,6 +1570,115 @@
 Итого на Predict: $O(\vert w\vert^2\vert G\vert^2)$
 
 Итого на Complete: $O(\vert w\vert^3\vert G\vert^2)$
+
+\subsection{Анализатор перенос-свёртка}
+Смотри конспект Сорокина, который можно распечатать и принести на экзамен
+
+\subsection{Операция перехода для LR-ситуаций}
+Смотри конспект Сорокина, который можно распечатать и принести на экзамен
+
+\subsection{Алгоритм построения LR-таблицы по LR-ситуациям}
+Смотри конспект Сорокина, который можно распечатать и принести на экзамен
+
+\subsection{Алгоритм разбора по LR-таблице}
+Смотри конспект Сорокина, который можно распечатать и принести на экзамен
+
+\subsection{ДМП-автоматы}
+\begin{definition}
+	Два перехода в МП-автомате: $\langle q_1,\, u_1,\, \alpha_1\rangle \to \langle q_1',\, \beta_1'\rangle$ и $\langle q_2,\, u_2,\, \alpha_2\rangle \to \langle q_2',\, \beta_2'\rangle$ называются \textbf{совместными}, если выполняются следующие условия:
+	\begin{itemize}
+		\item $q_1 = q_2$
+		\item $u_1 \sqsubset u_2$ или $u_2 \sqsubseteq u_1$
+		\item $\alpha_1 \sqsubseteq \alpha_2$ или $\alpha_2 \sqsubseteq \alpha_1$
+	\end{itemize}
+\end{definition}
+
+\begin{definition}
+	МП-автомат называется детерминированным, если в нём нет совместных переходов.
+\end{definition}
+
+\begin{definition}
+	Пусть $M$ -- ДМП-автомат. Тогда языком, который задаёт данный автомат, называется
+	\[
+		L(M) = \{w \:\vert\: \exists q \in F :\: \langle q_0,\,w\$,\,\varepsilon\rangle\vdash\langle q,\,\varepsilon,\,\varepsilon\rangle\}
+	\]
+\end{definition}
+
+\begin{lemma}
+	Любой ДМП-автомат эквивалентен ДМП автомату с переходами
+	\[
+		\langle q_1,\,u,\,\alpha\rangle\to\langle q_2,\,\beta\rangle,\, \vert u\vert +\vert \alpha\vert \leq 1
+	\]
+\end{lemma}
+
+\begin{proof}
+	Разбиваем переходы совместно\dots
+\end{proof}
+
+\begin{theorem}
+	Если $l$ -- длина самой длинной строки, которая может быть записана в ходе перехода в ДМП-автомате, то существует такая константа $N = F(\vert Q\vert,\, \vert \Gamma\vert,\, l)$ такая, что если $\langle q,\,\varepsilon,\, A\rangle \vdash_N\langle q',\,\varepsilon,\, \alpha\rangle,\, \vert \alpha\vert > 0$, то в ДМП-автомате возникнет цикл в конфигурации.
+\end{theorem}
+
+\begin{proof}
+	Если длина стека в пути не больше $\vert Q\vert\vert\Gamma\vert l$, то в качестве $N$ возьмём
+	\[
+		N = \vert Q\vert(1 + \vert \Gamma\vert + \vert\Gamma\vert^2 +\cdots + \vert\Gamma\vert^{\vert Q\vert\vert\Gamma\vert l})
+	\]
+	где второй множитель обозначает максимальное число стеков длины $\leq \vert Q\vert\vert\Gamma\vert l$. Тогда по принципу дирихле найдётся одна конфигурация.
+
+	Иначе
+	\[
+		\exists \langle q_0,\,\varepsilon,\,A\rangle\vdash_N\langle q',\,\varepsilon,\,\beta\rangle :\: \vert\beta\vert \geq \vert Q\vert\vert\Gamma\vert l + 1
+	\]
+
+	Давайте отмечать на нашем пути состояния так, чтобы длина стека у полученной подвыборки строго возрастала.
+
+	Так как за переход длина стека меняется не более чем на $l$, то мы отметим хотя бы $\vert Q\vert\vert\Gamma\vert +1$ конфигураций.
+
+	Тогда по принципу Дирихле $\exists$ два состояния:
+	\[
+		\langle q_1,\, \varepsilon,\, \alpha A\rangle,\,\langle q_1,\, \varepsilon,\, \alpha\gamma A\rangle
+	\]
+\end{proof}
+
+\begin{theorem}
+	Количество Shift'ов в LR-алгоритме ограничено сверху $\vert w\vert$, а количество Reduce'ов $\leq \vert w\vert\cdot N\cdot c$
+\end{theorem}
+
+\begin{proof}
+	Введём потенциал, который является суммой:
+	\begin{itemize}
+		\item Числа терминальных символов грамматики на стеке
+		\item Числа нетерминальных символов грамматики на стеке
+		\item Удвоенного числа непрочитанных букв в слове
+	\end{itemize}
+	При Shift имеем +1 на стеке, но -2 непрочитанных букв.
+
+	Отметим ситуации, после которых стек уменьшался -- после них потенциал уменьшается хотя бы на 1.
+
+	Имея изначальный потенциал $2\vert w\vert$ и зная, что в конце он равен $0$, то получим, что количество ситуаций, разобранных выше, ограничено.
+
+	Остаётся разобраться ситуации, когда Reduce не уменьшает стек, это происходит при обработке правил
+	\[
+		A \to \varepsilon ;\;\;\;\; A \to B
+	\]
+	Очевидно, таких правил ограниченное количество. Также, мы не можем прийти в соответствующую им ситуацию несколько раз, так как тогда мы зациклимся.
+\end{proof}
+
+\subsection{Приведение LR-алгоритма к распознаванию ДМП-автоматом}
+\begin{proposition}
+	Работа LR(1) алгоритма эмулируется работой ДМП-автомата.
+\end{proposition}
+
+\begin{proof}
+	В качестве стека ДМП-автомата будем использовать стек LR-алгоритма (последовательность символ-вершина-\dots). То есть при операции Shift:
+	\[
+		\langle q_i,\, a,\, \varepsilon\rangle \to \langle \text{GOTO}(q_i,\, a),\, a\text{GOTO}(q_i,\, a)\rangle
+	\]
+	При операции Reduce снимаем со стека путь, переходим в соответствующую ситуацию из LR-таблицы и кладём на стек тот нетерминал, который считали.
+
+	Почему этот автомат будет ДМП? Заметим, что свойство детерминированности эквивалентно отстутствию конфликтов, которых у нас нет по условию.
+\end{proof}
 
 \section{Конечные преобразователи}
 \subsection{Конечные преобразователи и задаваемые ими преобразования}
