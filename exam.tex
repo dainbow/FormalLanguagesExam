@@ -1405,12 +1405,12 @@
 		\item $w \in L(G)$
 		\item $S \vdash \varepsilon \Leftrightarrow \langle q_0,\, \varepsilon,\, \varepsilon\rangle \vdash\langle q,\, \varepsilon,\, \varepsilon\rangle \: (q \in F)$
 		\item $\langle q_0,\, w,\, \varepsilon\rangle\vdash\langle q_1,\, \varepsilon,\, \varepsilon\rangle$:
-		\begin{itemize}
-			\item $w = xa,\, \langle q_0,\, a,\, CB\rangle \vdash_1\langle q_1,\, \varepsilon,\, \varepsilon\rangle$
-			\item Тогда $\exists x = vu :\: \langle q_0,\, ua,\, C\rangle \vdash\langle q_0,\, a,\, CB\rangle;\; \langle q_0,\, vua,\, \varepsilon\rangle \vdash \langle q_0,\, ua,\, C\rangle$
-			\item Значит $B \vdash u,\, C \vdash v$
-			\item $S \vdash CBa \vdash vua = w$
-		\end{itemize}
+		      \begin{itemize}
+			      \item $w = xa,\, \langle q_0,\, a,\, CB\rangle \vdash_1\langle q_1,\, \varepsilon,\, \varepsilon\rangle$
+			      \item Тогда $\exists x = vu :\: \langle q_0,\, ua,\, C\rangle \vdash\langle q_0,\, a,\, CB\rangle;\; \langle q_0,\, vua,\, \varepsilon\rangle \vdash \langle q_0,\, ua,\, C\rangle$
+			      \item Значит $B \vdash u,\, C \vdash v$
+			      \item $S \vdash CBa \vdash vua = w$
+		      \end{itemize}
 	\end{itemize}
 \end{proof}
 
@@ -1424,7 +1424,7 @@
 
 	$MP = \langle P,\, \Sigma,\, \Gamma,\, \Delta_P,\, p_0,\, F_P\rangle,\, L(MP) = L$ -- МП-автомат с 1-буквенными переходами.
 
-	Построим МП-автомат как декартово произведение НКА со стеком: 
+	Построим МП-автомат как декартово произведение НКА со стеком:
 	\[
 		M_i = \langle Q \times P,\, \Sigma,\, \Gamma,\, \Delta,\, (q_0,\, p_0),\, F_M \times F_p\rangle
 	\]
@@ -1484,21 +1484,21 @@
 \end{theorem}
 
 \begin{proof}
-	Если длина стека в пути не больше $\vert Q\vert\vert\Gamma\vert l$, то в качестве $N$ возьмём 
+	Если длина стека в пути не больше $\vert Q\vert\vert\Gamma\vert l$, то в качестве $N$ возьмём
 	\[
 		N = \vert Q\vert(1 + \vert \Gamma\vert + \vert\Gamma\vert^2 +\cdots + \vert\Gamma\vert^{\vert Q\vert\vert\Gamma\vert l})
 	\]
 	где второй множитель обозначает максимальное число стеков длины $\leq \vert Q\vert\vert\Gamma\vert l$. Тогда по принципу дирихле найдётся одна конфигурация.
 
-	Иначе 
+	Иначе
 	\[
 		\exists \langle q_0,\,\varepsilon,\,A\rangle\vdash_N\langle q',\,\varepsilon,\,\beta\rangle :\: \vert\beta\vert \geq \vert Q\vert\vert\Gamma\vert l + 1
 	\]
 
 	Давайте отмечать на нашем пути состояния так, чтобы длина стека у полученной подвыборки строго возрастала.
 
-	Так как за переход длина стека меняется не более чем на $l$, то мы отметим хотя бы $\vert Q\vert\vert\Gamma\vert +1$ конфигураций. 
-	
+	Так как за переход длина стека меняется не более чем на $l$, то мы отметим хотя бы $\vert Q\vert\vert\Gamma\vert +1$ конфигураций.
+
 	Тогда по принципу Дирихле $\exists$ два состояния:
 	\[
 		\langle q_1,\, \varepsilon,\, \alpha A\rangle,\,\langle q_1,\, \varepsilon,\, \alpha\gamma A\rangle
@@ -1526,7 +1526,7 @@
 	\[
 		A \to \varepsilon ;\;\;\;\; A \to B
 	\]
-	Очевидно, таких правил ограниченное количество. Также, мы не можем прийти в соответствующую им ситуацию несколько раз, так как тогда мы зациклимся. 
+	Очевидно, таких правил ограниченное количество. Также, мы не можем прийти в соответствующую им ситуацию несколько раз, так как тогда мы зациклимся.
 \end{proof}
 
 \subsection{Приведение LR-алгоритма к распознаванию ДМП-автоматом}
@@ -1700,7 +1700,7 @@
 	Неформально:
 	\begin{itemize}
 		\item Находимся в состоянии $q$
-		\item Осталось прочесть слово $u$ 
+		\item Осталось прочесть слово $u$
 		\item Вывели слово $v$
 	\end{itemize}
 \end{definition}
@@ -1737,6 +1737,13 @@
 	\end{enumerate}
 \end{proof}
 
+\begin{definition}
+	Неудлиняющим гомоморфизмом $\psi$ называется  гомоморфизм, обладающим свойством
+	\[
+		\forall x \in \Sigma^* :\: \vert \psi(x)\vert \leq \vert x\vert
+	\]
+\end{definition}
+
 \begin{theorem}
 	Нива.
 
@@ -1747,5 +1754,236 @@
 		\item Неудлиняющего гомоморфизма: $\eta$
 	\end{itemize}
 \end{theorem}
+
+\begin{proof}
+	Пусть $\psi$ -- КП. Существует КПтель $M$ с 1-буквенными переходами.
+
+	\begin{itemize}
+		\item Промежуточный алфавит -- $\Delta$.
+		\item Определим
+		      \[
+			      \phi(\langle q_1,\,u\rangle \to \langle q_2,\, v\rangle) = u;\;\;\;\;\eta(\langle q_1,\,u\rangle \to \langle q_2,\, v\rangle) = v
+		      \]
+		\item Тогда словами в нашем новом алфавите будут последовательности рёбер, по котором выводили в изначальном
+		\item Заметим, что последовательности рёбер -- регулярный язык.
+	\end{itemize}
+\end{proof}
+
+\subsection{Ограничение конечного преобразователя на регулярный вход}
+\begin{theorem}
+	Пусть $\psi :\: \Sigma^* \to \Gamma^*$ -- КП, $R$ -- регулярный язык. Тогда
+	\[
+		\psi\vert_R:\:R\to\Gamma^*
+	\]
+	является КП
+\end{theorem}
+
+\begin{proof}
+	Пусть $T = \langle Q,\,\Sigma,\,\Gamma,\,\Delta_T,\, q_0,\, F_T\rangle$ -- КПтель: $\vert u\vert+\vert v\vert=1$ и $M = \langle P,\, \Sigma,\, \Delta_M,\, p_0,\, F_M\rangle$ -- ДКА: $L(M) = R$.
+
+	Построим $T_M = \langle Q\times P,\, \Sigma,\, \Gamma,\, \Delta,\, (q_0,\, p_0),\, F_T\times F_M\rangle$, где $\Delta$ состоит из:
+	\begin{itemize}
+		\item $\langle(q_1,\,p_1),\, a\rangle\to\langle(q_2,\,p_2),\,\varepsilon\rangle$, если:
+		      \begin{itemize}
+			      \item $\langle q_1,\,a\rangle\to\langle q_2,\,\varepsilon\rangle\in\Delta_T$
+			      \item $\langle p_1,\,a\rangle\to p_2 \in \Delta_M$
+		      \end{itemize}
+		\item $\langle(q_1,\,p),\,\varepsilon\rangle\to\langle(q_2,\,p),\,b\rangle$, если:
+		      \begin{itemize}
+			      \item $\langle q_1,\,\varepsilon\rangle\to\langle q_2,\,b\rangle\in\Delta_T$
+		      \end{itemize}
+	\end{itemize}
+	Утверждается, что
+	\[
+		\langle(q_1,\,p_1),\,u,\,\varepsilon\rangle\vdash_{T_M}\langle q_2,\,\varepsilon,\,v\rangle \Leftrightarrow\begin{cases}
+			\langle q_1,\,u,\,\varepsilon\rangle\vdash_T\langle q_2,\,\varepsilon,\,v\rangle \\
+			\langle p_1,\,u\rangle\vdash_M\langle p_2,\,\varepsilon\rangle
+		\end{cases}
+	\]
+	Докажем $\Rightarrow$ индукцией по длине вывода:
+	\begin{itemize}
+		\item База: 0 шагов
+		      \begin{itemize}
+			      \item $q_1 = q_2,\, p_1 = p_2,\, u = \varepsilon,\, v = \varepsilon$
+			      \item $\langle q_1,\,u,\,\varepsilon\rangle\vdash_T\langle q_2,\,\varepsilon,\,v\rangle$
+			      \item $\langle p_1,\,u\rangle\vdash_M\langle p_2,\,\varepsilon\rangle$
+		      \end{itemize}
+		\item Переход: $\langle(q_1,\,p_1),\,u,\,\varepsilon\rangle\vdash\langle(q_3,\,p_3),\,u_3,\,v_3\rangle\vdash_1\langle(q_2,\,p_2),\,\varepsilon,\,v\rangle$
+		      \begin{itemize}
+			      \item 1 случай: $u_3 = a$. Тогда $v_3 = v$
+			      \item То есть $\langle q_3,\,a,\,\varepsilon\rangle\vdash_{T,\,1}\langle q_2,\,\varepsilon,\,\varepsilon\rangle,\,\langle p_3,\,a\rangle\vdash_{M,\,1}\langle p_2,\,\varepsilon\rangle$
+			      \item Если $u = u'a$, то по предположению индукции: $\langle q_1,\,u',\,\varepsilon\rangle\vdash_T\langle q_3,\,\varepsilon,\,v\rangle,\,\langle p_1,\,u'\rangle\vdash_M\langle p_3,\,\varepsilon\rangle$
+			      \item Воспользовавшись транзитивностью, получим требуемое:
+			            \begin{align*}
+				            \langle q_1,\,u'a,\,\varepsilon\rangle\vdash_T\langle q_3,\,a,\,v\rangle\vdash_{T,\,1}\langle q_2,\,\varepsilon,\,v\rangle \\
+				            \langle p_1,\,u'a\rangle\vdash_M\langle p_3,\,a\rangle\vdash_{M,\,1}\langle p_2,\,\varepsilon\rangle
+			            \end{align*}
+			      \item 2 случай: $u_3 = \varepsilon,\,v = v_3b,\, p_2 = p_3$
+			      \item $\langle q_3,\,\varepsilon,\,\varepsilon\rangle\vdash_{T,\,1}\langle q_2,\,\varepsilon,\,b\rangle$
+			      \item Пользуемся транзитивностью:
+			            \begin{align*}
+				            \langle q_1,\,u,\,\varepsilon\rangle\vdash_T\langle q_3,\,\varepsilon,\,v_3\rangle\vdash_{T,\,1}\langle q_2,\,\varepsilon,\, v_3b\rangle \\
+				            \langle p_1,\,u\rangle\vdash_M\langle p_3,\,\varepsilon\rangle=\langle p_2,\,\varepsilon\rangle
+			            \end{align*}
+		      \end{itemize}
+	\end{itemize}
+	В обратную сторону $\Leftarrow$ индукцией по сумме длин вывода в $T$ и $M$:
+	\begin{itemize}
+		\item База: вывод суммарно за 0 шагов
+		      \begin{itemize}
+			      \item $q_1 = q_2,\, p_1 = p_2$
+			      \item $u = \varepsilon$, так как $M$ -- ДКА, $v = \varepsilon$
+			      \item По рефлексивности
+			            \[
+				            \langle(q_1,\,p_1),\,u,\,\varepsilon\rangle\vdash_{T_M}\langle(q_2,\,p_2),\,\varepsilon,\,v\rangle
+			            \]
+		      \end{itemize}
+		\item Переход: $\langle q_1,\,u,\,\varepsilon\rangle\vdash_T\langle q_3,\,u_3,\,v_3\rangle\vdash_{T,\,1}\langle q_2,\,\varepsilon,\,v\rangle$
+		      \begin{itemize}
+			      \item 1 случай: $\langle q_3,\,a\rangle\to\langle q_2,\,\varepsilon\rangle$
+			      \item Тогда: $u_3 = a,\, v_3 = v,\, u = u'a$
+			      \item Тогда найдётся $p_4 :\: \langle p_1,\,u'a\rangle\vdash_T\langle p_4,\,a\rangle\vdash_{T,\,1}\langle p_2,\,\varepsilon\rangle$
+			      \item $\langle q_1,\,u',\,\varepsilon\rangle\vdash_T\langle q_3,\,\varepsilon,\,v\rangle$
+			      \item Воспользуемся предположением $\langle(q_1,\,p_1),\,u',\,\varepsilon\rangle\vdash_{T_M}\langle(q_3,\,p_4),\,\varepsilon,\,v\rangle$:
+			            \[
+				            \langle(q_1,\,p_1),\,u'a,\,\varepsilon\rangle\vdash_{T_M}\langle(q_3,\,p_4),\,a,\,v\rangle\vdash_{T_M,\,1}\langle(q_2,\,p_2),\,\varepsilon,\,v\rangle
+			            \]
+			      \item 2 случай: $\langle q_1,\,\varepsilon\rangle\to\langle q_2,\,b\rangle$
+			      \item Тогда $u_3 = \varepsilon,\, v = v_3b$
+			      \item Предположение индукции: $\langle(q_1,\,p_1),\,u,\,\varepsilon\rangle\vdash_{T_M}\langle(q_3,\,p_2),\,\varepsilon,\,v_3\rangle$
+			      \item Воспользуемся транзитивностью:
+			            \[
+				            \langle(q_1,\,p_1),\,u,\,\varepsilon\rangle\vdash_{T_M}\langle(q_3,\,p_2),\,\varepsilon,\,v_3\rangle \vdash_{T_M,\,1}\langle(q_2,\,p_2),\,\varepsilon,\,v_3b\rangle
+			            \]
+		      \end{itemize}
+	\end{itemize}
+	Теперь зная данное прекрасное свойство, докажем теорему:
+	\begin{itemize}
+		\item $(u,\,v) \in \psi_{T_M}$
+		\item $\exists q \in F_T,\, p \in F_M :\: \langle(q_0,\,p_0),\,u,\,\varepsilon\rangle\vdash\langle(q,\,p),\,\varepsilon,\,v\rangle$
+		\item $\exists q \in F_T,\, p \in F_M :\: \langle q_0,\,u,\,\varepsilon\rangle\vdash\langle q,\,\varepsilon,\,v\rangle,\,\langle p_0,\,u\rangle\vdash\langle p,\,\varepsilon\rangle$
+		\item $(u,\,v) \in \psi_T,\, u \in R$
+		\item $(u,\, v) \in \psi\vert_R$
+	\end{itemize}
+\end{proof}
+
+\subsection{Замкнутость конечных преобразований относительно композиции}
+\begin{theorem}
+	Пусть $\psi_1 :\: \Sigma^* \to \Gamma^*$ и $\psi_2 :\: \Gamma^* \to \Pi^*$ -- КП. Тогда $\psi_2\circ\psi_1 :\: \Sigma^* \to \Pi^*$ -- КП.
+\end{theorem}
+
+\begin{proof}
+	Пусть $\psi_1 = \psi_1(M_1):\: M_1 = \langle Q,\,\Sigma,\,\Gamma,\,\Delta_1,\,q_0,\,F_1\rangle$ и $\psi_2 = \psi_2(M_2) :\: M_2 = \langle P,\, \Gamma,\, \Pi,\, \Delta_2,\, p_0,\, F_2\rangle$.
+
+	Тогда построим преобразователь-композицию
+	\[
+		M := \langle Q\times P,\, \Sigma,\, \Pi,\, \Delta,\, (q_0,\, p_0),\, F_1\times F_2\rangle
+	\]
+	где $\Delta$ состоит из:
+	\begin{itemize}
+		\item $\langle(q_1,\,p),\,a\rangle\to\langle(q_2,\,p),\,\varepsilon\rangle$, если $\langle q_1,\,a\rangle \to \langle q_2,\,\varepsilon\rangle \in \Delta_1$
+		\item $\langle(q_1,\,p_1),\,\varepsilon\rangle\to\langle(q_2,\,p_2),\,\varepsilon\rangle$, если:
+		      \begin{itemize}
+			      \item $\langle q_1,\,\varepsilon \rangle\to\langle q_2,\,b\rangle \in \Delta_1$
+			      \item $\langle p_1,\,b\rangle\to\langle p_2,\,\varepsilon\rangle \in \Delta_2$
+			      \item $\langle(q,\,p_1),\,\varepsilon\rangle\to\langle(q,\,p_2),\,c\rangle$, если $\langle p_1,\,\varepsilon\rangle\to\langle p_2,\,c\rangle \in \Delta_2$
+		      \end{itemize}
+	\end{itemize}
+	Утверждается, что
+	\[
+		\langle(q_1,\,p_1),\,u,\,\varepsilon\rangle\vdash_M\langle(q_2,\,p_2),\,\varepsilon,\,v\rangle\Leftrightarrow \exists z \in \Gamma^* :\: \begin{cases}
+			\langle q_1,\,u,\,\varepsilon\rangle\vdash_{M_1}\langle q_2,\,\varepsilon,\,z\rangle \\
+			\langle p_1,\,z,\,\varepsilon\rangle\vdash_{M_2}\langle p_2,\,\varepsilon,\, v\rangle
+		\end{cases}
+	\]
+	В начале докажем $\Rightarrow$ индукцией по длине вывода:
+	\begin{itemize}
+		\item База 0 шагов: $q_1 = q_2,\, p_1 = p_2,\, u = \varepsilon,\, v = \varepsilon$
+		      \begin{itemize}
+			      \item $z := \varepsilon$
+			      \item $\langle q_1,\,u,\,\varepsilon\rangle\vdash_{M_1}\langle q_2,\,\varepsilon,\,\varepsilon\rangle$
+			      \item $\langle p_1,\,\varepsilon,\,\varepsilon\rangle\vdash_{M_2}\langle p_2,\,\varepsilon,\,v\rangle$
+		      \end{itemize}
+		\item Переход: читаем букву $a$:
+		      \begin{itemize}
+			      \item $\langle q_1,\,a\rangle\to\langle q_3,\,\varepsilon\rangle\in\Delta_{M_1}$
+			      \item $\langle(q_1,\,p_1),\,au',\,\varepsilon\rangle\vdash_1\langle(q_3,\,p_1),\,u',\,\varepsilon\rangle\vdash\langle(q_2,\,p_2),\,\varepsilon,\,v\rangle$
+			      \item По предположению $\exists z :\: \langle q_3,\,u',\,\varepsilon\rangle\vdash_{M_1}\langle q_2,\,\varepsilon,\,z\rangle$ и $\langle p_1,\,z,\,\varepsilon\rangle\vdash_{M_2}\langle p_2,\,\varepsilon,\,v\rangle$
+			      \item Объединив, получим
+			            \[
+				            \langle q_1,\,au',\,\varepsilon\rangle\vdash_{M_1,\,1}\langle q_3,\,u',\,\varepsilon\rangle\vdash_{M_1}\langle q_2,\,\varepsilon,\,z\rangle
+			            \]
+		      \end{itemize}
+
+		\item Переход: пишем букву $c$:
+		      \begin{itemize}
+			      \item $\langle p_1,\,\varepsilon\rangle \to \langle p_3,\,c\rangle \in \Delta_{M_2}$
+			      \item $\langle(q_1,\,p_1),\,u,\,\varepsilon\rangle\vdash_{M_2,\,1}\langle(q_1,\,p_3),\,u,\,c\rangle\vdash\langle(q_2,\,p_2),\,\varepsilon,\,cv'\rangle$
+			      \item По предположению $\exists z :\: \langle q_1,\,u,\,\varepsilon\rangle\vdash_{M_1}\langle q_2,\,\varepsilon,\,z\rangle,\,\langle p_3,\,z,\,\varepsilon\rangle\vdash_{M_2}\langle p_2,\,\varepsilon,\,v'\rangle$
+			      \item Объединяем по транзитивности
+			            \[
+				            \langle p_1,\,z,\,\varepsilon\rangle\vdash_{M_2,\,1}\langle p_3,\,z,\,c\rangle\vdash_{M_2}\langle p_2,\,\varepsilon,\,cv'\rangle
+			            \]
+		      \end{itemize}
+		\item Переход: делаем $\varepsilon:\:\varepsilon$ переход
+		      \begin{itemize}
+			      \item По определению такого перехода, $\exists x :\: \langle q_1,\,\varepsilon,\,\varepsilon\rangle\vdash_{M_1,\,1}\langle q_3,\,\varepsilon,\,x\rangle,\, \langle p_1,\,x,\,\varepsilon\rangle\vdash_{M_2,\,1}\langle p_3,\,\varepsilon,\,\varepsilon\rangle$
+			      \item $\langle(q_1,\,p_1),\,u,\,\varepsilon\rangle\vdash_{M,\,1}\langle(q_3,\,p_3),\,u,\,\varepsilon\rangle\vdash\langle(q_2,\,p_2),\,\varepsilon,\,v\rangle$
+			      \item По предположению $\exists z :\: \langle q_3,\,u,\,\varepsilon\rangle\vdash\langle q_2,\,\varepsilon,\,z\rangle,\, \langle p_3,\,z,\,\varepsilon\rangle\vdash_{M_2}\langle p_2,\,\varepsilon,\,v\rangle$
+			      \item Объединив всё, что знаем
+						\begin{align*}
+							\langle q_1,\,u,\,\varepsilon\rangle\vdash_{M_1,\,1}\langle q_3,\,u,\,x\rangle\vdash_{M_1}\langle q_2,\,\varepsilon,\,xz\rangle\\
+							\langle p_1,\,xz,\,\varepsilon\rangle_{M_2,\,1}\langle p_3,\,z,\,\varepsilon\rangle\vdash_{M_2}\langle p_2,\,\varepsilon,\,v\rangle
+						\end{align*}
+					\end{itemize}
+	\end{itemize}
+	В $\Leftarrow$ докажем индукцией по сумме длин вывода из $M_1$ и $M_2$.
+	\begin{itemize}
+		\item База: 0 шагов
+		\begin{itemize}
+			\item Тогда $u = \varepsilon,\, v = \varepsilon,\, z = \varepsilon$
+			\item $q_1 = q_2,\, p_1 = p_2$
+		\end{itemize}
+		\item Переход: читаем букву $a$ из $u$:
+		\begin{itemize}
+			\item $\langle q_1,\,au',\,\varepsilon\rangle\vdash_{M_1,\,1}\langle q_3,\,u',\,\varepsilon\rangle\vdash_{M_1}\langle q_2,\,\varepsilon,\,z\rangle$
+			\item Предположение $\langle(q_3,\,p_1),\,u',\,\varepsilon\rangle \vdash \langle(q_2,\,p_2),\,\varepsilon,\,v\rangle$
+			\item Тогда
+			\[
+				\langle(q_1,\,p_1),\,au',\,\varepsilon\rangle\vdash_1\langle(q_3,\,p_1),\,u',\,\varepsilon\rangle
+			\]
+		\end{itemize}
+		\item Переход: пишем букву $c$ из $v$:
+		\begin{itemize}
+			\item $\langle p_1,\,z,\,\varepsilon\rangle\vdash_{M_2,\,1}\langle p_3,\,z,\,c\rangle\vdash_{M_2}\langle p_2,\,\varepsilon,\,cv'\rangle$
+			\item Предположение $\langle(q_1,\,p_3),\,u,\,\varepsilon\rangle\vdash\langle(q_2,\,p_2),\,\varepsilon,\,v'\rangle$
+			\item Тогда
+			\[
+				\langle(q_1,\,p_1),\,u,\,\varepsilon\rangle\vdash_1\langle(q_1,\,p_3),\,u,\,c\rangle\vdash\langle(q_2,\,p_2),\,\varepsilon,\,cv'\rangle
+			\]
+		\end{itemize}
+		\item Переход: пишем $b$ в $z$ и читаем из $z$:
+		\begin{itemize}
+			\item По условию $\langle q_1,\,u,\,\varepsilon\rangle\vdash_{M_1,\,1}\langle q_3,\,u,\,b\rangle\vdash_{M_1}\langle q_2,\,\varepsilon,\, bz'\rangle$ и $\langle p_1,\,bz',\,\varepsilon\rangle\vdash_{M_2,\,1}\langle p_3,\,z',\,\varepsilon\rangle\vdash_{M_2}\langle p_2,\,\varepsilon,\,v\rangle$
+			\item По предположению индукции: $\langle(q_3,\,p_3),\,u,\,\varepsilon\rangle\vdash\langle(q_2,\,p_2),\,\varepsilon,\,v\rangle$
+			\item Тогда 
+			\[
+				\langle(q_1,\,p_1),\,u,\,\varepsilon\rangle\vdash_M\langle(q_3,\,p_3),\,u,\,\varepsilon\rangle
+			\]
+		\end{itemize}
+	\end{itemize}
+	Теперь, зная это прекрасное свойство, докажем теорему:
+	\begin{itemize}
+		\item $(u,\, v) \in \psi(M)$
+		\item $\exists q \in F_1,\, p \in F_2 :\: \langle(p_0,\,q_0),\,u,\,\varepsilon\rangle\vdash\langle(q,\,p),\,\varepsilon,\,v\rangle$
+		\item $\exists q \in F_1,\, p \in F_2,\, z \in \Gamma^*$:
+		\begin{align*}
+			\langle q_0,\,u,\,\varepsilon\rangle\vdash_{M_1}\langle q,\,\varepsilon,\,z\rangle\\
+			\langle p_0,\,z,\,\varepsilon\rangle\vdash_{M_2}\langle p,\,\varepsilon,\,v\rangle
+		\end{align*}
+		\item $\exists z \in \Gamma^* :\: (u,\,z) \in \psi_1,\, (z,\, v) \in \psi_2$
+		\item $(u,\,v) \in \psi_2\circ\psi_1$
+	\end{itemize}
+\end{proof}
 
 \end{document}
