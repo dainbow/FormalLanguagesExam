@@ -784,7 +784,7 @@
 \begin{proof}
 	Надо доказать два утверждения:
 	\begin{enumerate}
-		\item $\langle A,\, w\rangle \vdash_M \langle M,\, \varepsilon\rangle \Leftrightarrow A \vdash_G wB;\;\; A,\,B \in N$
+		\item $\langle A,\, w\rangle \vdash_M \langle B,\, \varepsilon\rangle \Leftrightarrow A \vdash_G wB;\;\; A,\,B \in N$
 		\item $\langle A,\, w\rangle \vdash_M \langle q_f,\, \varepsilon\rangle \Leftrightarrow A \vdash_G w$
 	\end{enumerate}
 
@@ -794,7 +794,7 @@
 	\begin{itemize}
 		\item База индукции -- 0 шагов:
 		      \begin{align*}
-			      \langle A,\, w\rangle \vdash_{M,\, 0} \langle B,\, \varepsilon\rangle \Rightarrow A = B,\, w = \varepsilon \Rightarrow A \vdash_G \varepsilon B
+			      \langle A,\, w\rangle \vdash_{M,\, 1} \langle B,\, \varepsilon\rangle \Rightarrow A = B,\, w = \varepsilon \Rightarrow A \vdash_G \varepsilon B
 		      \end{align*}
 		\item Для перехода представим произвольное слово $w = vu,\, u \in \Sigma$:
 		      \begin{align*}
