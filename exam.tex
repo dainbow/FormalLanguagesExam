@@ -773,7 +773,7 @@
 \subsection{Построение конечного автомата по праволинейной грамматике}
 Строим автомат:
 \begin{align*}
-	M = \langle S \cup \{q_f\},\, \Sigma,\, \Delta,\, S,\, \{q_f\}\rangle
+	M = \langle N \cup \{q_f\},\, \Sigma,\, \Delta,\, S,\, \{q_f\}\rangle
 \end{align*}
 Переходы:
 \begin{enumerate}
@@ -876,7 +876,7 @@
 \begin{definition}
 	Символ $Y \in N$ называется \textbf{порождающим}, если:
 	\begin{align*}{
-		\exists} w \in \Sigma^* :\: Y \vdash w
+			\exists} w \in \Sigma^* :\: Y \vdash w
 	\end{align*}
 \end{definition}
 
@@ -889,7 +889,7 @@
 \end{proposition}
 
 \begin{proof}
-	Включение $L(G_1) \subset L(G)$ очевидно, так как мы удалили нетерминалы, которые никак не влияли на вывод слов, поэтому язык не уменьшился.
+	Включение $L(G_1) \subset L(G)$ очевидно, так как мы удалили нетерминалы, которые никак не влияли на вывод слов, поэтому язык не увеличился.
 
 	Докажем $L(G) \subset L(G_1)$. Пусть $w \in L(G) \setminus L(G_1)$.
 
@@ -913,7 +913,7 @@
 \end{proposition}
 
 \begin{proof}
-	Включение $L(G_2) \subset L(G_1)$ очевидно, так как удалили все нетерминалы, которые не участвовали в выводе, поэтому язык не уменьшился.
+	Включение $L(G_2) \subset L(G_1)$ очевидно, так как удалили все нетерминалы, которые не участвовали в выводе, поэтому язык не увеличился.
 
 	Теперь докажем $L(G_1) \subset L(G_2) \Rightarrow \exists w \in L(G_1) \setminus L(G_2) \Rightarrow$ существует недостижимый $U :\: S \vdash \alpha U \beta \vdash w \Rightarrow U$ -- достижимый. Противоречие.
 \end{proof}
@@ -1163,7 +1163,7 @@
 	Вводим dummy стековый элемент $T$ и превращаем переход выше в два последовательных перехода
 	\[
 		\langle q_1,\, w,\, \varepsilon\rangle \to \langle q',\,T\rangle,\, \langle q',\,\varepsilon,\, T\rangle \to \langle q_2,\, \varepsilon\rangle
-	\] 
+	\]
 \end{proof}
 
 \subsection{Построение МП-автомата по КС-грамматике}
@@ -1178,7 +1178,7 @@
 	Пусть $G = \langle N,\, \Sigma,\, P,\, S\rangle$, определим автомат
 	\[
 		M = \langle \{q_0,\, q_1\},\, \Sigma,\, N \cup \Sigma,\, \Delta,\, q_0,\, \{q_1\}\rangle
-	\] 
+	\]
 	причём $\Delta$ состоит из правил:
 	\begin{itemize}
 		\item $\langle q_0,\, \varepsilon,\, S\rangle \to \langle q_1,\, \varepsilon\rangle$
@@ -1197,26 +1197,26 @@
 		\item Для перехода рассмотрим $A \vdash_1 \alpha_1\cdots\alpha_k \vdash w_1\cdots w_k = w$, где $\alpha_i$ -- нетерминалы, а $w_i$ -- ерминалы
 		\item По предположению, $\langle q_0,\, w_j,\, \varepsilon\rangle \vdash \langle q_0,\, \varepsilon,\, \alpha_j\rangle$
 		\item Тогда
-		\[
-			\langle q_0,\, w_1\cdots w_k,\, \varepsilon\rangle \vdash \langle q_0,\, w_2\cdots w_k,\, \alpha_1\rangle\vdash\cdots\vdash\langle q_0,\, \varepsilon,\, \alpha_1\cdots\alpha_k\rangle \vdash\langle q_0,\, \varepsilon,\, A\rangle
-		\]
+		      \[
+			      \langle q_0,\, w_1\cdots w_k,\, \varepsilon\rangle \vdash \langle q_0,\, w_2\cdots w_k,\, \alpha_1\rangle\vdash\cdots\vdash\langle q_0,\, \varepsilon,\, \alpha_1\cdots\alpha_k\rangle \vdash\langle q_0,\, \varepsilon,\, A\rangle
+		      \]
 	\end{itemize}
 	Теперь $\Leftarrow$:
 
 	Индукция по длине вывода:
 	\begin{itemize}
 		\item База: 1 шаг
-		\begin{itemize}
-			\item $\langle q_0,\, a,\, \varepsilon\rangle \vdash \langle q_0,\, \varepsilon,\, a\rangle \Rightarrow a \vdash a$
-			\item $\langle q_0,\, \varepsilon,\, \varepsilon\rangle\vdash\langle q_0,\, \varepsilon,\, A\rangle \Rightarrow A \to \varepsilon \in P$
-		\end{itemize}
+		      \begin{itemize}
+			      \item $\langle q_0,\, a,\, \varepsilon\rangle \vdash \langle q_0,\, \varepsilon,\, a\rangle \Rightarrow a \vdash a$
+			      \item $\langle q_0,\, \varepsilon,\, \varepsilon\rangle\vdash\langle q_0,\, \varepsilon,\, A\rangle \Rightarrow A \to \varepsilon \in P$
+		      \end{itemize}
 		\item Переход: $\langle q_0,\, w,\, \varepsilon\rangle\vdash\langle q_0,\, \varepsilon,\, \alpha_1\cdots\alpha_k\rangle\vdash_1\langle q_0,\, \varepsilon,\, A\rangle$
-		\begin{itemize}
-			\item При этом $A \to \alpha_1\cdots\alpha_k \in P$
-			\item Найдём момент, когда на стеке появится $\alpha_1$: $\langle q_0,\, w,\, \varepsilon\rangle \vdash\langle q_0,\, w',\, \alpha_1\rangle$
-			\item Тогда $w = u_1w'$, причём $\langle q_0,\, u_1,\, \varepsilon\rangle \vdash\langle q_0,\, \varepsilon,\, \alpha_1\rangle$. Тогда $\alpha_1 \vdash u_1$.
-			\item Аналогично, $\alpha_j \vdash u_j$ и $A \vdash \alpha_1\cdots\alpha_k \vdash w$
-		\end{itemize}
+		      \begin{itemize}
+			      \item При этом $A \to \alpha_1\cdots\alpha_k \in P$
+			      \item Найдём момент, когда на стеке появится $\alpha_1$: $\langle q_0,\, w,\, \varepsilon\rangle \vdash\langle q_0,\, w',\, \alpha_1\rangle$
+			      \item Тогда $w = u_1w'$, причём $\langle q_0,\, u_1,\, \varepsilon\rangle \vdash\langle q_0,\, \varepsilon,\, \alpha_1\rangle$. Тогда $\alpha_1 \vdash u_1$.
+			      \item Аналогично, $\alpha_j \vdash u_j$ и $A \vdash \alpha_1\cdots\alpha_k \vdash w$
+		      \end{itemize}
 	\end{itemize}
 	Для доказательства совпадения языков остаётся заметить эквивалентность следующих фактов:
 	\begin{itemize}
@@ -1228,7 +1228,7 @@
 	\end{itemize}
 \end{proof}
 
-\section{Построение КС-грамматики по МП-автомату}
+\subsection{Построение КС-грамматики по МП-автомату}
 \begin{theorem}
 	Каждому МП-автомату $M$ соответствует КС-грамматика $G$:
 	\[
@@ -1244,10 +1244,10 @@
 	Правила будем строить так:
 	\begin{itemize}
 		\item $A_{ij} \to uA_{st}vA_{rj}$, если
-		\begin{itemize}
-			\item $\langle q_i,\, u,\, \varepsilon\rangle\to\langle q_s,\, A\rangle$
-			\item $\langle q_t,\,v,\,A\rangle\to\langle q_r,\, \varepsilon\rangle$
-		\end{itemize}
+		      \begin{itemize}
+			      \item $\langle q_i,\, u,\, \varepsilon\rangle\to\langle q_s,\, A\rangle$
+			      \item $\langle q_t,\,v,\,A\rangle\to\langle q_r,\, \varepsilon\rangle$
+		      \end{itemize}
 		\item $A_{ij} \to \varepsilon$
 		\item $S \to A_{0j}$, если $q_j \in F$
 	\end{itemize}
@@ -1259,30 +1259,30 @@
 	\begin{itemize}
 		\item База: $A_{ij} \vdash_1 w$. Тогда $w = \varepsilon,\, i = j$. Значит, $\langle q_i,\, w,\, \varepsilon\rangle \vdash \langle q_j,\, \varepsilon,\,\varepsilon\rangle$
 		\item Переход: $A_{ij} \vdash_1 uA_{st}vA_{rj} \vdash uzvy$
-		\begin{itemize}
-			\item По построению 			$\langle q_i,\, u,\, \varepsilon\rangle\to\langle q_s,\, A\rangle$, $\langle q_t,\,v,\,A\rangle\to\langle q_r,\, \varepsilon\rangle$
-			\item По предположению: $A_{st} \vdash z \Rightarrow \langle q_s,\, z,\, \varepsilon\rangle \vdash\langle q_t,\, \varepsilon,\, \varepsilon\rangle$ и $A_{rj} \vdash y \Rightarrow \langle q_r,\, y,\, \varepsilon\rangle\vdash\langle q_j,\, \varepsilon,\, \varepsilon\rangle$
-			\item Тогда в итоге
-			\[
-				\langle q_i,\, w,\, \varepsilon\rangle \vdash \langle q_i,\, uzvy,\, \varepsilon\rangle \vdash \langle q_s,\, zvy,\, A\rangle \vdash \langle q_t,\, vy,\, A\rangle \vdash \langle q_r,\, y,\, \varepsilon\rangle \vdash \langle q_j,\, \varepsilon,\, \varepsilon\rangle 
-			\]
-		\end{itemize}
+		      \begin{itemize}
+			      \item По построению 			$\langle q_i,\, u,\, \varepsilon\rangle\to\langle q_s,\, A\rangle$, $\langle q_t,\,v,\,A\rangle\to\langle q_r,\, \varepsilon\rangle$
+			      \item По предположению: $A_{st} \vdash z \Rightarrow \langle q_s,\, z,\, \varepsilon\rangle \vdash\langle q_t,\, \varepsilon,\, \varepsilon\rangle$ и $A_{rj} \vdash y \Rightarrow \langle q_r,\, y,\, \varepsilon\rangle\vdash\langle q_j,\, \varepsilon,\, \varepsilon\rangle$
+			      \item Тогда в итоге
+			            \[
+				            \langle q_i,\, w,\, \varepsilon\rangle \vdash \langle q_i,\, uzvy,\, \varepsilon\rangle \vdash \langle q_s,\, zvy,\, A\rangle \vdash \langle q_t,\, vy,\, A\rangle \vdash \langle q_r,\, y,\, \varepsilon\rangle \vdash \langle q_j,\, \varepsilon,\, \varepsilon\rangle
+			            \]
+		      \end{itemize}
 	\end{itemize}
 	Теперь для $\Leftarrow$:
 	\begin{itemize}
 		\item База: $\langle q_i,\, w,\, \varepsilon\rangle \vdash_0\langle q_j,\, \varepsilon,\, \varepsilon\rangle$. Тогда $i = j,\, w =\varepsilon,\, A_{ii} \to \varepsilon$
 		\item Переход: $\langle q_i,\, w,\, \varepsilon\rangle\vdash\langle q_j,\, \varepsilon,\, \varepsilon\rangle$
-		\begin{itemize}
-			\item Идя по цепочке вывода, $\exists w = uzvy$, причём
-			\[
-				\langle q_i,\, w,\, \varepsilon\rangle \vdash \langle q_i,\, uzvy,\, \varepsilon\rangle \vdash \langle q_s,\, zvy,\, A\rangle \vdash \langle q_t,\, vy,\, A\rangle \vdash \langle q_r,\, y,\, \varepsilon\rangle \vdash \langle q_j,\, \varepsilon,\, \varepsilon\rangle 
-			\]
-			\item По предположению: $A_{st} \vdash z \Leftarrow \langle q_s,\, z,\, \varepsilon\rangle \vdash\langle q_t,\, \varepsilon,\, \varepsilon\rangle$ и $A_{rj} \vdash y \Leftarrow \langle q_r,\, y,\, \varepsilon\rangle\vdash\langle q_j,\, \varepsilon,\, \varepsilon\rangle$
-			\item Тогда
-			\[
-				A_{ij} \vdash uA_{st}vA_{rj} \vdash uzvy = w
-			\]
-		\end{itemize}
+		      \begin{itemize}
+			      \item Идя по цепочке вывода, $\exists w = uzvy$, причём
+			            \[
+				            \langle q_i,\, w,\, \varepsilon\rangle \vdash \langle q_i,\, uzvy,\, \varepsilon\rangle \vdash \langle q_s,\, zvy,\, A\rangle \vdash \langle q_t,\, vy,\, A\rangle \vdash \langle q_r,\, y,\, \varepsilon\rangle \vdash \langle q_j,\, \varepsilon,\, \varepsilon\rangle
+			            \]
+			      \item По предположению: $A_{st} \vdash z \Leftarrow \langle q_s,\, z,\, \varepsilon\rangle \vdash\langle q_t,\, \varepsilon,\, \varepsilon\rangle$ и $A_{rj} \vdash y \Leftarrow \langle q_r,\, y,\, \varepsilon\rangle\vdash\langle q_j,\, \varepsilon,\, \varepsilon\rangle$
+			      \item Тогда
+			            \[
+				            A_{ij} \vdash uA_{st}vA_{rj} \vdash uzvy = w
+			            \]
+		      \end{itemize}
 	\end{itemize}
 	Для доказательства теоремы заметим эквивалентность следующих утверждений:
 	\begin{itemize}
@@ -1310,7 +1310,7 @@
 \end{theorem}
 
 \begin{proof}
-	Определим оператор левого деления 
+	Определим оператор левого деления
 	\[
 		B \setminus A := \{w \in \Sigma^* \:\vert\: \exists x \in B :\: xw \in A\}
 	\]
@@ -1334,11 +1334,11 @@
 	\begin{itemize}
 		\item База: $B \setminus A \vdash_1 w$. Тогда $A = B,\, w = \varepsilon$. Значит, $A \vdash A\varepsilon$.
 		\item Переход: $B \setminus A \vdash_1 e(E \setminus D)(C \setminus A) \vdash euv$.
-		\begin{itemize}
-			\item По предположению: $E \setminus D \vdash u \Rightarrow D \vdash Eu$, $C \setminus A \vdash v \Rightarrow A \vdash Cv$
-			\item По условию $C \vdash BD$
-			\item $A \vdash Cv \vdash BDv \vdash BEuv \vdash Beuv \vdash Bw$
-		\end{itemize}
+		      \begin{itemize}
+			      \item По предположению: $E \setminus D \vdash u \Rightarrow D \vdash Eu$, $C \setminus A \vdash v \Rightarrow A \vdash Cv$
+			      \item По условию $C \vdash BD$
+			      \item $A \vdash Cv \vdash BDv \vdash BEuv \vdash Beuv \vdash Bw$
+		      \end{itemize}
 	\end{itemize}
 	Теперь $\Leftarrow$:
 
@@ -1346,8 +1346,8 @@
 	\begin{itemize}
 		\item База: $A \vdash_0 Bw$. Тогда $A = B,\, w = \varepsilon$. Значит, $A \setminus A \vdash \varepsilon$.
 		\item Переход: смотри картинку
-		
-		\includegraphics[scale=0.3]{assets/greibach.png}
+
+		      \includegraphics[scale=0.3]{assets/greibach.png}
 	\end{itemize}
 
 	Осталось доказать равенство языков, для этого приведём изначальную грамматику к нормальной форме Хомского $G_h$.
@@ -1373,6 +1373,176 @@
 		\item $S \to \varepsilon$
 	\end{itemize}
 \end{note}
+
+\subsection{Построение МП-автомата без eps-переходов}
+\begin{theorem}
+	Для любого МП-автомата существует эквивалентный МП-автомат, для которого выполнено соотношение:
+	\[
+		\forall (\langle q_1,\, u,\, \alpha\rangle\to\langle q_2,\, \beta\rangle) \in \Delta :\: \vert u\vert = 1
+	\]
+\end{theorem}
+
+\begin{proof}
+	Рассмотрим алгоритм "КС-грамматика $\to$ МП-автомат" для обратной нормальной формы Грейбах!
+
+	Хотим доказать, что
+	\[
+		\langle q_0,\, w,\, \varepsilon\rangle\vdash\langle q_0,\, \varepsilon,\, A\rangle \Leftrightarrow A \vdash w \: (A \neq S)
+	\]
+	Вначале $\Leftarrow$:
+	\begin{itemize}
+		\item $w \in L(G)$
+		\item $S \vdash \varepsilon \Leftrightarrow \langle q_0,\, \varepsilon,\, \varepsilon\rangle \vdash\langle q,\, \varepsilon,\, \varepsilon\rangle \: (q \in F)$
+		\item $S \vdash_1 CBA \vdash vua$:
+		      \begin{itemize}
+			      \item $C \vdash v \Rightarrow \langle q_0,\, vua,\, \varepsilon\rangle \vdash \langle q_0,\, ua,\, C\rangle$
+			      \item $B \vdash u \Rightarrow \langle q_0,\, ua,\, C\rangle \vdash \langle q_0,\, a,\, CB\rangle$
+			      \item $\langle q_0,\, a,\, CB\rangle \vdash_1\langle q_1,\, \varepsilon,\, \varepsilon\rangle$
+		      \end{itemize}
+	\end{itemize}
+	Теперь $\Rightarrow$:
+	\begin{itemize}
+		\item $w \in L(G)$
+		\item $S \vdash \varepsilon \Leftrightarrow \langle q_0,\, \varepsilon,\, \varepsilon\rangle \vdash\langle q,\, \varepsilon,\, \varepsilon\rangle \: (q \in F)$
+		\item $\langle q_0,\, w,\, \varepsilon\rangle\vdash\langle q_1,\, \varepsilon,\, \varepsilon\rangle$:
+		\begin{itemize}
+			\item $w = xa,\, \langle q_0,\, a,\, CB\rangle \vdash_1\langle q_1,\, \varepsilon,\, \varepsilon\rangle$
+			\item Тогда $\exists x = vu :\: \langle q_0,\, ua,\, C\rangle \vdash\langle q_0,\, a,\, CB\rangle;\; \langle q_0,\, vua,\, \varepsilon\rangle \vdash \langle q_0,\, ua,\, C\rangle$
+			\item Значит $B \vdash u,\, C \vdash v$
+			\item $S \vdash CBa \vdash vua = w$
+		\end{itemize}
+	\end{itemize}
+\end{proof}
+
+\subsection{КС-языки и теоретико-множественные операции}
+\begin{proposition}
+	КС-языки замкнуты относительно пересечения с регулярными языками
+\end{proposition}
+
+\begin{proof}
+	Пусть $M = \langle Q,\, \Sigma,\, \Delta_M,\, q_0,\, D_M\rangle,\, L(M) = R$ -- НКА с 1-буквенными переходами.
+
+	$MP = \langle P,\, \Sigma,\, \Gamma,\, \Delta_P,\, p_0,\, F_P\rangle,\, L(MP) = L$ -- МП-автомат с 1-буквенными переходами.
+
+	Построим МП-автомат как декартово произведение НКА со стеком: 
+	\[
+		M_i = \langle Q \times P,\, \Sigma,\, \Gamma,\, \Delta,\, (q_0,\, p_0),\, F_M \times F_p\rangle
+	\]
+	где $\Delta$ состоит из $\langle(q_1,\, p_1),\, a,\,\alpha\rangle \to\langle (q_2,\, p_2),\, \beta\rangle$, если:
+	\begin{itemize}
+		\item $\langle q_1,\, a\rangle \to q_2 \in \Delta_M$
+		\item $\langle p_1,\,a,\,\alpha\rangle\to\langle p_2,\, \beta\rangle \in \Delta_P$
+	\end{itemize}
+\end{proof}
+
+\subsection{Анализатор перенос-свёртка}
+Смотри конспект Сорокина, который можно распечатать и принести на экзамен
+
+\subsection{Операция перехода для LR-ситуаций}
+Смотри конспект Сорокина, который можно распечатать и принести на экзамен
+
+\subsection{Алгоритм построения LR-таблицы по LR-ситуациям}
+Смотри конспект Сорокина, который можно распечатать и принести на экзамен
+
+\subsection{Алгоритм разбора по LR-таблице}
+Смотри конспект Сорокина, который можно распечатать и принести на экзамен
+
+\subsection{ДМП-автоматы}
+\begin{definition}
+	Два перехода в МП-автомате: $\langle q_1,\, u_1,\, \alpha_1\rangle \to \langle q_1',\, \beta_1'\rangle$ и $\langle q_2,\, u_2,\, \alpha_2\rangle \to \langle q_2',\, \beta_2'\rangle$ называются \textbf{совместными}, если выполняются следующие условия:
+	\begin{itemize}
+		\item $q_1 = q_2$
+		\item $u_1 \sqsubset u_2$ или $u_2 \sqsubseteq u_1$
+		\item $\alpha_1 \sqsubseteq \alpha_2$ или $\alpha_2 \sqsubseteq \alpha_1$
+	\end{itemize}
+\end{definition}
+
+\begin{definition}
+	МП-автомат называется детерминированным, если в нём нет совместных переходов.
+\end{definition}
+
+\begin{definition}
+	Пусть $M$ -- ДМП-автомат. Тогда языком, который задаёт данный автомат, называется
+	\[
+		L(M) = \{w \:\vert\: \exists q \in F :\: \langle q_0,\,w\$,\,\varepsilon\rangle\vdash\langle q,\,\varepsilon,\,\varepsilon\rangle\}
+	\]
+\end{definition}
+
+\begin{lemma}
+	Любой ДМП-автомат эквивалентен ДМП автомату с переходами
+	\[
+		\langle q_1,\,u,\,\alpha\rangle\to\langle q_2,\,\beta\rangle,\, \vert u\vert +\vert \alpha\vert \leq 1
+	\]
+\end{lemma}
+
+\begin{proof}
+	Разбиваем переходы совместно\dots
+\end{proof}
+
+\begin{theorem}
+	Если $l$ -- длина самой длинной строки, которая может быть записана в ходе перехода в ДМП-автомате, то существует такая константа $N = F(\vert Q\vert,\, \vert \Gamma\vert,\, l)$ такая, что если $\langle q,\,\varepsilon,\, A\rangle \vdash_N\langle q',\,\varepsilon,\, \alpha\rangle,\, \vert \alpha\vert > 0$, то в ДМП-автомате возникнет цикл в конфигурации.
+\end{theorem}
+
+\begin{proof}
+	Если длина стека в пути не больше $\vert Q\vert\vert\Gamma\vert l$, то в качестве $N$ возьмём 
+	\[
+		N = \vert Q\vert(1 + \vert \Gamma\vert + \vert\Gamma\vert^2 +\cdots + \vert\Gamma\vert^{\vert Q\vert\vert\Gamma\vert l})
+	\]
+	где второй множитель обозначает максимальное число стеков длины $\leq \vert Q\vert\vert\Gamma\vert l$. Тогда по принципу дирихле найдётся одна конфигурация.
+
+	Иначе 
+	\[
+		\exists \langle q_0,\,\varepsilon,\,A\rangle\vdash_N\langle q',\,\varepsilon,\,\beta\rangle :\: \vert\beta\vert \geq \vert Q\vert\vert\Gamma\vert l + 1
+	\]
+
+	Давайте отмечать на нашем пути состояния так, чтобы длина стека у полученной подвыборки строго возрастала.
+
+	Так как за переход длина стека меняется не более чем на $l$, то мы отметим хотя бы $\vert Q\vert\vert\Gamma\vert +1$ конфигураций. 
+	
+	Тогда по принципу Дирихле $\exists$ два состояния:
+	\[
+		\langle q_1,\, \varepsilon,\, \alpha A\rangle,\,\langle q_1,\, \varepsilon,\, \alpha\gamma A\rangle
+	\]
+\end{proof}
+
+\begin{theorem}
+	Количество Shift'ов в LR-алгоритме ограничено сверху $\vert w\vert$, а количество Reduce'ов $\leq \vert w\vert\cdot N\cdot c$
+\end{theorem}
+
+\begin{proof}
+	Введём потенциал, который является суммой:
+	\begin{itemize}
+		\item Числа терминальных символов грамматики на стеке
+		\item Числа нетерминальных символов грамматики на стеке
+		\item Удвоенного числа непрочитанных букв в слове
+	\end{itemize}
+	При Shift имеем +1 на стеке, но -2 непрочитанных букв.
+
+	Отметим ситуации, после которых стек уменьшался -- после них потенциал уменьшается хотя бы на 1.
+
+	Имея изначальный потенциал $2\vert w\vert$ и зная, что в конце он равен $0$, то получим, что количество ситуаций, разобранных выше, ограничено.
+
+	Остаётся разобраться ситуации, когда Reduce не уменьшает стек, это происходит при обработке правил
+	\[
+		A \to \varepsilon ;\;\;\;\; A \to B
+	\]
+	Очевидно, таких правил ограниченное количество. Также, мы не можем прийти в соответствующую им ситуацию несколько раз, так как тогда мы зациклимся. 
+\end{proof}
+
+\subsection{Приведение LR-алгоритма к распознаванию ДМП-автоматом}
+\begin{proposition}
+	Работа LR(1) алгоритма эмулируется работой ДМП-автомата.
+\end{proposition}
+
+\begin{proof}
+	В качестве стека ДМП-автомата будем использовать стек LR-алгоритма (последовательность символ-вершина-\dots). То есть при операции Shift:
+	\[
+		\langle q_i,\, a,\, \varepsilon\rangle \to \langle \text{GOTO}(q_i,\, a),\, a\text{GOTO}(q_i,\, a)\rangle
+	\]
+	При операции Reduce снимаем со стека путь, переходим в соответствующую ситуацию из LR-таблицы и кладём на стек тот нетерминал, который считали.
+
+	Почему этот автомат будет ДМП? Заметим, что свойство детерминированности эквивалентно отстутствию конфликтов, которых у нас нет по условию.
+\end{proof}
 
 \section{Парсеры}
 \subsection{Корректность алгоритма Эрли}
@@ -1510,5 +1680,72 @@
 
 Итого на Complete: $O(\vert w\vert^3\vert G\vert^2)$
 
+\section{Конечные преобразователи}
+\subsection{Конечные преобразователи и задаваемые ими преобразования}
+\begin{definition}
+	Конечным преобразователем (КПТелем) $M$ называется кортеж $M = \langle Q,\,\Sigma,\,\Gamma,\,\Delta,\, q_0,\, F\rangle$, где:
+	\begin{itemize}
+		\item $Q$ -- множество состояний, $\vert Q\vert < +\infty$
+		\item $\Sigma$ -- входной алфавит, $\vert \Sigma\vert < +\infty$
+		\item $\Gamma$ -- выходной алфавит, $\vert \Gamma\vert < +\infty$
+		\item $\Delta \subset (Q \times \Sigma^*) \times (Q \times \Gamma^*)$ -- множество переходов
+		\item $q_0$ -- стартовое состояние
+		\item $F \subset Q$ -- множество завершающих состояний.
+	\end{itemize}
+\end{definition}
+
+\begin{definition}
+	\textbf{Конфигурацией КПтеля} $M$ называется тройка $\langle q,\,u,\,v\rangle \in Q \times \Sigma^* \times \Gamma^*$.
+
+	Неформально:
+	\begin{itemize}
+		\item Находимся в состоянии $q$
+		\item Осталось прочесть слово $u$ 
+		\item Вывели слово $v$
+	\end{itemize}
+\end{definition}
+
+\begin{definition}
+	$\vdash$ -- наименьшее рефлексивное транзитивное отношение, что
+	\[
+		\forall \langle q_1,\,u\rangle \to\langle q_2,\, v\rangle \in \Delta
+	\]
+	выполнено:
+	\[
+		\forall y \in \Sigma^*,\, z \in \Gamma^* :\: \langle q_1,\, uv,\,z\rangle\vdash\langle q_2,\,y,\,zv\rangle
+	\]
+\end{definition}
+
+\begin{definition}
+	\textbf{Конечным преобразованием} будем называть
+	\[
+		\psi = \{(u,\,v) \in \Sigma^*\times\Gamma^* \:\vert\: \exists q \in F :\: \langle q_0,\,u,\,\varepsilon\rangle \vdash \langle q,\,\varepsilon,\,v\rangle\}
+	\]
+\end{definition}
+
+\begin{proposition}
+	Для любого КПтеля существует эквивалентный КПтель, для которого выполнено соотношение:
+	\[
+		\forall(\langle q_1,\,u\rangle\to\langle q_2,\, v\rangle) \in \Delta :\: \vert u\vert + \vert v\vert = 1
+	\]
+\end{proposition}
+
+\begin{proof}
+	\begin{enumerate}
+		\item Раскроем все длинные переходы
+		\item Удалим $\varepsilon:\varepsilon$ переходы по аналогии с НКА
+	\end{enumerate}
+\end{proof}
+
+\begin{theorem}
+	Нива.
+
+	Любое конечное преобразование можно представить в виде композиции:
+	\begin{itemize}
+		\item Обратного неудлиняющего гомоморфизма: $\phi^{-1}$
+		\item Ограничения на регулярный язык $\text{id}_R$
+		\item Неудлиняющего гомоморфизма: $\eta$
+	\end{itemize}
+\end{theorem}
 
 \end{document}
