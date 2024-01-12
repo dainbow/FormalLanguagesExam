@@ -79,9 +79,9 @@
 \begin{note} Дополнительные обозначения.
 
 	\begin{itemize}
-		\item $\Sigma^*$ -- множество слов, состоящее из всех символов алфавита $\Sigma$.
+		\item $\Sigma^*$ -- множество слов, состоящих из символов алфавита $\Sigma$.
 		\item \textbf{Формальный язык} $L \subset \Sigma^*$.
-		\item Пустое слово $\varepsilon \subset \Sigma^*$.
+		\item Пустое слово $\varepsilon \in \Sigma^*$.
 	\end{itemize}
 \end{note}
 
@@ -155,7 +155,7 @@
 		\item $w \in L(M') \Rightarrow \langle q_0,\, w\rangle \vdash_{M'} \langle q_f,\, \varepsilon\rangle$
 		\item Рассмотрим цепь $\langle q_0,\, w\rangle \vdash_{M'} \langle q,\, u\rangle \vdash_{M',\, 1} \langle q_f,\, \varepsilon\rangle$
 		\item Тогда $u = \varepsilon$, а $q \in F$ из того, как мы определили $\Delta'$ (других переходов в $q_f$ не существует).
-		\item Получили $\langle q_0,\, w\rangle \to q \Rightarrow w \in L(M)$.
+		\item Получили $\langle q_0,\, w\rangle \vdash \langle q, \eps \rangle \Rightarrow w \in L(M)$.
 	\end{itemize}
 \end{proof}
 
@@ -200,8 +200,8 @@
 	\end{itemize}
 	Теперь соберём из этих переходов из $\Delta$ переходы из $\Delta'$:
 	\begin{align*}
-		\Delta(q_0,\, \varepsilon) = q_1',\, \langle q_1',\, w_1\rangle \to q_1 \Rightarrow (\langle q_0,\, w_1\rangle \to q_1) \in \Delta' \\
-		\Delta(q_1,\, \varepsilon) = q_2',\, \langle q_2',\, w_2\rangle \to q_2 \Rightarrow (\langle q_1,\, w_2\rangle \to q_2) \in \Delta' \\
+		q_1' \in \Delta(q_0,\, \varepsilon),\, \langle q_1',\, w_1\rangle \to q_1 \Rightarrow (\langle q_0,\, w_1\rangle \to q_1) \in \Delta' \\
+		q_2' \in \Delta(q_1,\, \varepsilon),\, \langle q_2',\, w_2\rangle \to q_2 \Rightarrow (\langle q_1,\, w_2\rangle \to q_2) \in \Delta' \\
 		F \ni q \in \Delta(q_2,\, \varepsilon) \Rightarrow q_2 \in F'
 	\end{align*}
 	В итоге получим, что
@@ -494,7 +494,7 @@
 	\begin{align*}
 		w \in L(M) \Leftrightarrow \Delta(q_0,\, w) \in F \Leftrightarrow \Delta([q_0],\, w) \in F' \Leftrightarrow w \in L(M')
 	\end{align*}
-	Осталось показать, что все все состояния в получившемся автомате попарно неэквивалентны: пусть  $[q_1] \sim_{M'} [q_2]$, тогда
+	Осталось показать, что все состояния в получившемся автомате попарно неэквивалентны: пусть  $[q_1] \sim_{M'} [q_2]$, тогда
 	\begin{align*}
 		\forall w :\: \Delta([q_1],\, w) \in F' \Leftrightarrow \Delta([q_2],\,w) \in F' \Rightarrow \forall w :\: [\Delta(q_1,\,w)] \in F' \Leftrightarrow [\Delta(q_2,\,w)] \in F' \Rightarrow \\
 		\forall w :\: \Delta(q_1,\, w) \in F \Leftrightarrow \Delta(q_2,\,w) \in F \Rightarrow                                                                                                   \\
