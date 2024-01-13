@@ -2096,7 +2096,27 @@
 
 \subsection{Теоремы Хомского-Шютценберже}
 \begin{theorem}
-	Всякий КС-язык можно получить рациональным конечным преобразованием из языка $\mathcal{B}_k$ (язык с $k$ видами правильных скобочных последовательностей) для некоторого $k$.
+	Теорема Хомского-Шютценберже. Слабая форма.
+
+	Всякий КС-язык можно получить рациональным конечным преобразованием из языка $\mathcal{B}_k$ (язык с $k$ видами скобок правильных скобочных последовательностей) для некоторого $k$.
+\end{theorem}
+
+\begin{proof}
+	$L$ -- КС-язык $\Rightarrow \exists$ МП-автомат $M = \langle Q,\,\Sigma,\,\Gamma,\,\Delta,\, q_0,\,F\rangle$, такой что
+	\[
+		\forall \langle q_1,\,u,\,\alpha\rangle\to\langle q_2,\,\beta\rangle :\: \vert \alpha\vert + \vert \beta\vert = 1
+	\]
+	То есть все переходы имеют вид
+	\[
+		\langle q_1,\,u,\,\varepsilon\rangle\to\langle q_2,\,A_k\rangle;\;\;\;\;\langle q_1,\,u,\,A_k\rangle\to\langle q_2,\,\varepsilon\rangle
+	\]
+	Теперь давайте скажем, что $u :\: \varepsilon :\: A_k \mapsto u :\: \}_k$ и $u :\: A_k :\: \varepsilon \mapsto u :\: \{_k$
+\end{proof}
+
+\begin{theorem}
+	Теорема Хомского-Шютценберже. Сильная форма.
+
+	Всякий КС-язык $L \subset \Sigma^*$ представим в виде $L = h(\mathcal{B}_k \cap R)$, где $R$ -- регулярный язык, $h$ -- гомоморфизм над $\Sigma^*$.
 \end{theorem}
 
 \end{document}
