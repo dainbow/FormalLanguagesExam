@@ -482,12 +482,12 @@
 		q_1 \in [q] \Rightarrow \forall w:\: \Delta(q_1,\,w) \in F \Leftrightarrow \Delta(q,\,w) \in F \text{ в том числе: } \\
 		(\Delta(q_1,\,\varepsilon) = q_1) \in F \Leftrightarrow (\Delta(q,\, \varepsilon) = q) \in F
 	\end{align*}
-	Совпадение языков, т.е. $\forall w :\: \Delta([q_0],\, w) = [\Delta(q_0,\,w)]$ индукцией по $|w|$:
+	Совпадение языков, т.е. $\forall w :\: \Delta([q],\, w) = [\Delta(q,\,w)]$ индукцией по $|w|$:
 	\begin{itemize}
 		\item База уже доказана в предыдущих пунктах
 		\item Пусть $w = ua$:
 		      \begin{align*}
-			      \Delta([q_0],\, ua) = \Delta(\Delta([q_0],\, u),\, a) = \Delta([\Delta(q_0,\, u)],\, a) = [\Delta(\Delta(q_0,\,u),\, a)] = [\Delta(q_0,\,ua)]
+			      \Delta([q],\, ua) = \Delta(\Delta([q],\, u),\, a) = \Delta([\Delta(q,\, u)],\, a) = [\Delta(\Delta(q,\,u),\, a)] = [\Delta(q,\,ua)]
 		      \end{align*}
 	\end{itemize}
 	Тогда:
@@ -515,7 +515,7 @@
 		\forall w_1,\, w_2 \in \Sigma^* :\: \Delta(q_0,\, w_1) \not\sim \Delta(q_0,\, w_2) \Rightarrow \exists u :\: \Delta(\Delta(q_0,\, w_1),\, u) \not\in F,\, \Delta(\Delta(q_0,\, w_2),\, u) \in F \Rightarrow \\
 		\exists u :\: \Delta(q_0,\, w_1u) \not\in F,\, \Delta(q_0,\, w_2u) \in F \Rightarrow \exists u :\: w_1u \not\in L,\, w_2u \in L \Rightarrow                                                                 \\ w_1 \not\sim_L w_2
 	\end{align*}
-	Тогда $\vert\Sigma^*/\sim_L\vert \geq \vert Q\vert$, но $\forall$ ПДКА $M' :\: |\Sigma^*/\sim_L| \leq |Q'| \Rightarrow \vert Q\vert \leq \vert Q'\vert \Rightarrow M$ -- минимальный.
+	Тогда $\vert\Sigma^*/\sim_L\vert \geq \vert Q\vert$, но $\forall$ ПДКА $M' :\: |\Sigma^*/\sim_L| \leq |Q'| \Rightarrow \vert Q\vert = \vert\Sigma^*/\sim_L\vert \Rightarrow M$ -- минимальный.
 \end{proof}
 
 \subsection{Про канонический ПДКА}
@@ -529,7 +529,7 @@
 \end{definition}
 
 \subsubsection*{Канонический ПДКА - корректность построения}
-Канонический ПДКА для языка $L$ определим, как $\Sigma^* / \sim_L$:
+Каноническим ПДКА для языка $L$ определим, как $\Sigma^* / \sim_L$:
 \begin{align*}
 	M_0 = \langle\Sigma^*/\sim_L,\,\Sigma,\,\Delta,\, [\varepsilon],\,\{[w] \:|\: w \in L\} \rangle ;\;\;\;\; \Delta([u],\,a) = [ua],\, u \in \Sigma^*,\, a \in \Sigma
 \end{align*}
