@@ -745,7 +745,7 @@
 	\end{align*}
 	Теперь $\Leftarrow$ для обоих пунктов:
 
-	Первый тоже докажем индукцией по длине вывода в $G$Ж
+	Первый тоже докажем индукцией по длине вывода в $G$:
 	\begin{itemize}
 		\item База индукции 0 шагов:
 		      \begin{align*}
@@ -850,7 +850,7 @@
 \begin{proof}
 	Построим КС-грамматику для языка $L_1 \cup L_2$. Для этого рассмотрим соответствующие грамматики для $L_1,\, L_2$. Пусть стартовые символы в них имеют имена $S$ и $T$. Тогда стартовый символ для $L_1 \cup L_2$ обозначим за $S'$ и добавим правило $S' \to S \:|\: T$. Покажем, что $S' \vdash_G w \Leftrightarrow S \vdash_G w \lor T \vdash_G w$.
 
-	$\Leftarrow$: Поскольку $S \vdash_G$ и есть правило $S' \vdash_G S$, то по транзитивности выводимости получаем, что $S' \vdash_G w$. Аналогично и для $T$.
+	$\Leftarrow$: Поскольку $S \vdash_G w$ и есть правило $S' \vdash_G S$, то по транзитивности выводимости получаем, что $S' \vdash_G w$. Аналогично и для $T$.
 
 	$\Rightarrow$: Пусть $S' \vdash_G w$. Поскольку $S' \vdash S \:|\: T$ -- единственные правила, в которых нетерминал $S'$ присутствует в левой части, то это означает, что либо $S' \vdash_G S \vdash_G w$, либо $S' \vdash_G T \vdash_G w$.
 \end{proof}
@@ -872,6 +872,16 @@
 \end{proof}
 
 \subsection{Удаление непорождающих и недостижимых символов в алгоритме примедения к нормальной форме Хомского. Асимптотика приведённых шагов.}
+
+\begin{definition}
+	КС-грамматика находится в \textbf{нормальной форме Хомского}, если все правила имеют такой и только такой вид:
+	\begin{itemize}
+		\item $A \to a \: (A \in N,\, a \in \Sigma)$
+		\item $A \to BC \: (B \in N,\, C \in N,\, B \neq S,\, C \neq S)$
+		\item $S \to \varepsilon$
+	\end{itemize}
+\end{definition}
+
 \subsubsection*{Удаление непорождающих символов}
 \begin{definition}
 	Символ $Y \in N$ называется \textbf{порождающим}, если:
@@ -1124,7 +1134,7 @@
 \begin{definition}
 	$\vdash$ -- наименьшее рефлексивное транзитивное отношение, что
 	\[
-		\forall\langle q_1,\,u,\,\theta\rangle \to \langle q_2,\, \beta\rangle \in \Delta :\: \forall v \in \Sigma^*,\, \eta \in \Gamma^* \: \langle q_1,\, uv,\, \eta\alpha\rangle \vdash \langle q_2,\, v,\, \eta\beta\rangle
+		\forall\langle q_1,\,u,\,\alpha\rangle \to \langle q_2,\, \beta\rangle \in \Delta :\: \forall v \in \Sigma^*,\, \eta \in \Gamma^* \: \langle q_1,\, uv,\, \eta\alpha\rangle \vdash \langle q_2,\, v,\, \eta\beta\rangle
 	\]
 \end{definition}
 
@@ -1183,7 +1193,7 @@
 	\begin{itemize}
 		\item $\langle q_0,\, \varepsilon,\, S\rangle \to \langle q_1,\, \varepsilon\rangle$
 		\item $\langle q_0,\, \varepsilon,\, \alpha\rangle \to\langle q_0,\, A\rangle$, если $A \to \alpha \in P$
-		\item $\langle q_0,\, a,\, \varepsilon\rangle \to \langle q_1,\, a\rangle,\, a \in \Sigma$
+		\item $\langle q_0,\, a,\, \varepsilon\rangle \to \langle q_0,\, a\rangle,\, a \in \Sigma$
 	\end{itemize}
 	Хотим доказать, что
 	\[
@@ -1194,7 +1204,7 @@
 	Индукция по длине вывода:
 	\begin{itemize}
 		\item База $\alpha \vdash_0 w$. Тогда $\alpha = a = w \Rightarrow \langle q_0,\, a,\, \varepsilon\rangle \vdash \langle q_0,\, \varepsilon,\, a\rangle$ по третьему типу правил.
-		\item Для перехода рассмотрим $A \vdash_1 \alpha_1\cdots\alpha_k \vdash w_1\cdots w_k = w$, где $\alpha_i$ -- нетерминалы, а $w_i$ -- ерминалы
+		\item Для перехода рассмотрим $A \vdash_1 \alpha_1\cdots\alpha_k \vdash w_1\cdots w_k = w$, где $\alpha_i$ -- нетерминалы, а $w_i$ -- терминалы
 		\item По предположению, $\langle q_0,\, w_j,\, \varepsilon\rangle \vdash \langle q_0,\, \varepsilon,\, \alpha_j\rangle$
 		\item Тогда
 		      \[
@@ -1239,7 +1249,7 @@
 \begin{proof}
 	Определим множество нетерминалов $N$, как
 	\[
-		N = \{A_{ij} \:\vert\: q_i,\, q_j \in Q\} \cup S
+		N = \{A_{ij} \:\vert\: q_i,\, q_j \in Q\} \cup \{S\}
 	\]
 	Правила будем строить так:
 	\begin{itemize}
@@ -1248,7 +1258,7 @@
 			      \item $\langle q_i,\, u,\, \varepsilon\rangle\to\langle q_s,\, A\rangle$
 			      \item $\langle q_t,\,v,\,A\rangle\to\langle q_r,\, \varepsilon\rangle$
 		      \end{itemize}
-		\item $A_{ij} \to \varepsilon$
+		\item $A_{ii} \to \varepsilon$
 		\item $S \to A_{0j}$, если $q_j \in F$
 	\end{itemize}
 	Хотим показать, что
@@ -1294,9 +1304,9 @@
 	\end{itemize}
 \end{proof}
 
-\subsection{Нормальная форма ГРейбах для КС-грамматик}
+\subsection{Нормальная форма Грейбах для КС-грамматик}
 \begin{definition}
-	КС-грамматика находится в нормальной форме Грейбах, если все правила имеют такой и только такой вид:
+	КС-грамматика находится в \textbf{нормальной форме Грейбах}, если все правила имеют такой и только такой вид:
 	\begin{itemize}
 		\item $A \to a,\, a \in \Sigma$
 		\item $A \to aB,\, A \in \Sigma;\, B \in N;\, B \neq S$
@@ -1385,6 +1395,13 @@
 \begin{proof}
 	Рассмотрим алгоритм "КС-грамматика $\to$ МП-автомат" для обратной нормальной формы Грейбах!
 
+	Однако в лоб применить алгоритм не получится: имеем плохие переходы, так что будем заменять
+	\begin{enumerate}
+		\item $\langle q_0,\,\varepsilon,\, CBa\rangle \to \langle q_0,\, A\rangle$ скомбинируем с $\langle q_0,\, a,\, \varepsilon\rangle\to\langle q_0,\,a\rangle$ и получим $\langle q_0,\, a,\,CB\rangle\to\langle q_0,\, A\rangle$
+		\item Далее комбинируем $a:\:\varepsilon:\: a,\, \varepsilon :\: CBa:\: S,\, \varepsilon:\: S:\: \varepsilon$ в $a :\: CB :\: \varepsilon$
+		\item Осталось избавиться от $S \to \varepsilon$, для этого просто считаем $q_0 \in F$.
+	\end{enumerate}
+
 	Хотим доказать, что
 	\[
 		\langle q_0,\, w,\, \varepsilon\rangle\vdash\langle q_0,\, \varepsilon,\, A\rangle \Leftrightarrow A \vdash w \: (A \neq S)
@@ -1392,8 +1409,8 @@
 	Вначале $\Leftarrow$:
 	\begin{itemize}
 		\item $w \in L(G)$
-		\item $S \vdash \varepsilon \Leftrightarrow \langle q_0,\, \varepsilon,\, \varepsilon\rangle \vdash\langle q,\, \varepsilon,\, \varepsilon\rangle \: (q \in F)$
-		\item $S \vdash_1 CBA \vdash vua$:
+		\item $S \vdash \varepsilon \Leftrightarrow \langle q_0,\, \varepsilon,\, \varepsilon\rangle \vdash\langle q_0,\, \varepsilon,\, \varepsilon\rangle \: (q_0 \in F)$
+		\item $S \vdash_1 CBa \vdash vua$:
 		      \begin{itemize}
 			      \item $C \vdash v \Rightarrow \langle q_0,\, vua,\, \varepsilon\rangle \vdash \langle q_0,\, ua,\, C\rangle$
 			      \item $B \vdash u \Rightarrow \langle q_0,\, ua,\, C\rangle \vdash \langle q_0,\, a,\, CB\rangle$
@@ -1403,7 +1420,7 @@
 	Теперь $\Rightarrow$:
 	\begin{itemize}
 		\item $w \in L(G)$
-		\item $S \vdash \varepsilon \Leftrightarrow \langle q_0,\, \varepsilon,\, \varepsilon\rangle \vdash\langle q,\, \varepsilon,\, \varepsilon\rangle \: (q \in F)$
+		\item $S \vdash \varepsilon \Leftrightarrow \langle q_0,\, \varepsilon,\, \varepsilon\rangle \vdash\langle q_0,\, \varepsilon,\, \varepsilon\rangle \: (q_0 \in F)$
 		\item $\langle q_0,\, w,\, \varepsilon\rangle\vdash\langle q_1,\, \varepsilon,\, \varepsilon\rangle$:
 		      \begin{itemize}
 			      \item $w = xa,\, \langle q_0,\, a,\, CB\rangle \vdash_1\langle q_1,\, \varepsilon,\, \varepsilon\rangle$
@@ -1604,6 +1621,14 @@
 	\]
 \end{definition}
 
+\begin{example}
+	Доллар в конце важен, так как иначе детерминированный язык
+	\[
+		L = \{a^nb^m \:\vert\: n = m \lor m = 0\}
+	\]
+	не получилось бы выразить ДМП-автоматом.
+\end{example}
+
 \begin{lemma}
 	Любой ДМП-автомат эквивалентен ДМП автомату с переходами
 	\[
@@ -1612,7 +1637,7 @@
 \end{lemma}
 
 \begin{proof}
-	Разбиваем переходы совместно\dots
+	Разбиваем переходы совместно\dots Может получиться так, что неразбитые переходы из одного состояния согласованные, однако их побуквенное разбитие что-то нарушит, для этого проделываем цыганские фокусы -- после каждого перехода по букве можем класть на стек номер перехода, по которому идёт разбитие.
 \end{proof}
 
 \begin{theorem}
@@ -1641,6 +1666,21 @@
 	\]
 \end{proof}
 
+\subsection{Приведение LR-алгоритма к распознаванию ДМП-автоматом}
+\begin{proposition}
+	Работа LR(1) алгоритма эмулируется работой ДМП-автомата.
+\end{proposition}
+
+\begin{proof}
+	В качестве стека ДМП-автомата будем использовать стек LR-алгоритма (последовательность символ-вершина-\dots). То есть при операции Shift:
+	\[
+		\langle q_i,\, a,\, \varepsilon\rangle \to \langle \text{GOTO}(q_i,\, a),\, a\text{GOTO}(q_i,\, a)\rangle
+	\]
+	При операции Reduce снимаем со стека путь, переходим в соответствующую ситуацию из LR-таблицы и кладём на стек тот нетерминал, который считали.
+
+	Почему этот автомат будет ДМП? Заметим, что свойство детерминированности эквивалентно отстутствию конфликтов, которых у нас нет по условию.
+\end{proof}
+
 \begin{theorem}
 	Количество Shift'ов в LR-алгоритме ограничено сверху $\vert w\vert$, а количество Reduce'ов $\leq \vert w\vert\cdot N\cdot c$
 \end{theorem}
@@ -1665,25 +1705,10 @@
 	Очевидно, таких правил ограниченное количество. Также, мы не можем прийти в соответствующую им ситуацию несколько раз, так как тогда мы зациклимся.
 \end{proof}
 
-\subsection{Приведение LR-алгоритма к распознаванию ДМП-автоматом}
-\begin{proposition}
-	Работа LR(1) алгоритма эмулируется работой ДМП-автомата.
-\end{proposition}
-
-\begin{proof}
-	В качестве стека ДМП-автомата будем использовать стек LR-алгоритма (последовательность символ-вершина-\dots). То есть при операции Shift:
-	\[
-		\langle q_i,\, a,\, \varepsilon\rangle \to \langle \text{GOTO}(q_i,\, a),\, a\text{GOTO}(q_i,\, a)\rangle
-	\]
-	При операции Reduce снимаем со стека путь, переходим в соответствующую ситуацию из LR-таблицы и кладём на стек тот нетерминал, который считали.
-
-	Почему этот автомат будет ДМП? Заметим, что свойство детерминированности эквивалентно отстутствию конфликтов, которых у нас нет по условию.
-\end{proof}
-
 \section{Конечные преобразователи}
 \subsection{Конечные преобразователи и задаваемые ими преобразования}
 \begin{definition}
-	Конечным преобразователем (КПТелем) $M$ называется кортеж $M = \langle Q,\,\Sigma,\,\Gamma,\,\Delta,\, q_0,\, F\rangle$, где:
+	\textbf{Конечным преобразователем} (КПТелем) $M$ называется кортеж $M = \langle Q,\,\Sigma,\,\Gamma,\,\Delta,\, q_0,\, F\rangle$, где:
 	\begin{itemize}
 		\item $Q$ -- множество состояний, $\vert Q\vert < +\infty$
 		\item $\Sigma$ -- входной алфавит, $\vert \Sigma\vert < +\infty$
@@ -1795,7 +1820,7 @@
 	\end{itemize}
 	Утверждается, что
 	\[
-		\langle(q_1,\,p_1),\,u,\,\varepsilon\rangle\vdash_{T_M}\langle q_2,\,\varepsilon,\,v\rangle \Leftrightarrow\begin{cases}
+		\langle(q_1,\,p_1),\,u,\,\varepsilon\rangle\vdash_{T_M}\langle (q_2,\,p_2),\,\varepsilon,\,v\rangle \Leftrightarrow\begin{cases}
 			\langle q_1,\,u,\,\varepsilon\rangle\vdash_T\langle q_2,\,\varepsilon,\,v\rangle \\
 			\langle p_1,\,u\rangle\vdash_M\langle p_2,\,\varepsilon\rangle
 		\end{cases}
@@ -1886,8 +1911,8 @@
 		      \begin{itemize}
 			      \item $\langle q_1,\,\varepsilon \rangle\to\langle q_2,\,b\rangle \in \Delta_1$
 			      \item $\langle p_1,\,b\rangle\to\langle p_2,\,\varepsilon\rangle \in \Delta_2$
-			      \item $\langle(q,\,p_1),\,\varepsilon\rangle\to\langle(q,\,p_2),\,c\rangle$, если $\langle p_1,\,\varepsilon\rangle\to\langle p_2,\,c\rangle \in \Delta_2$
 		      \end{itemize}
+		\item $\langle(q,\,p_1),\,\varepsilon\rangle\to\langle(q,\,p_2),\,c\rangle$, если $\langle p_1,\,\varepsilon\rangle\to\langle p_2,\,c\rangle \in \Delta_2$
 	\end{itemize}
 	Утверждается, что
 	\[
@@ -1931,56 +1956,56 @@
 			      \item $\langle(q_1,\,p_1),\,u,\,\varepsilon\rangle\vdash_{M,\,1}\langle(q_3,\,p_3),\,u,\,\varepsilon\rangle\vdash\langle(q_2,\,p_2),\,\varepsilon,\,v\rangle$
 			      \item По предположению $\exists z :\: \langle q_3,\,u,\,\varepsilon\rangle\vdash\langle q_2,\,\varepsilon,\,z\rangle,\, \langle p_3,\,z,\,\varepsilon\rangle\vdash_{M_2}\langle p_2,\,\varepsilon,\,v\rangle$
 			      \item Объединив всё, что знаем
-						\begin{align*}
-							\langle q_1,\,u,\,\varepsilon\rangle\vdash_{M_1,\,1}\langle q_3,\,u,\,x\rangle\vdash_{M_1}\langle q_2,\,\varepsilon,\,xz\rangle\\
-							\langle p_1,\,xz,\,\varepsilon\rangle_{M_2,\,1}\langle p_3,\,z,\,\varepsilon\rangle\vdash_{M_2}\langle p_2,\,\varepsilon,\,v\rangle
-						\end{align*}
-					\end{itemize}
+			            \begin{align*}
+				            \langle q_1,\,u,\,\varepsilon\rangle\vdash_{M_1,\,1}\langle q_3,\,u,\,x\rangle\vdash_{M_1}\langle q_2,\,\varepsilon,\,xz\rangle \\
+				            \langle p_1,\,xz,\,\varepsilon\rangle_{M_2,\,1}\langle p_3,\,z,\,\varepsilon\rangle\vdash_{M_2}\langle p_2,\,\varepsilon,\,v\rangle
+			            \end{align*}
+		      \end{itemize}
 	\end{itemize}
 	В $\Leftarrow$ докажем индукцией по сумме длин вывода из $M_1$ и $M_2$.
 	\begin{itemize}
 		\item База: 0 шагов
-		\begin{itemize}
-			\item Тогда $u = \varepsilon,\, v = \varepsilon,\, z = \varepsilon$
-			\item $q_1 = q_2,\, p_1 = p_2$
-		\end{itemize}
+		      \begin{itemize}
+			      \item Тогда $u = \varepsilon,\, v = \varepsilon,\, z = \varepsilon$
+			      \item $q_1 = q_2,\, p_1 = p_2$
+		      \end{itemize}
 		\item Переход: читаем букву $a$ из $u$:
-		\begin{itemize}
-			\item $\langle q_1,\,au',\,\varepsilon\rangle\vdash_{M_1,\,1}\langle q_3,\,u',\,\varepsilon\rangle\vdash_{M_1}\langle q_2,\,\varepsilon,\,z\rangle$
-			\item Предположение $\langle(q_3,\,p_1),\,u',\,\varepsilon\rangle \vdash \langle(q_2,\,p_2),\,\varepsilon,\,v\rangle$
-			\item Тогда
-			\[
-				\langle(q_1,\,p_1),\,au',\,\varepsilon\rangle\vdash_1\langle(q_3,\,p_1),\,u',\,\varepsilon\rangle
-			\]
-		\end{itemize}
+		      \begin{itemize}
+			      \item $\langle q_1,\,au',\,\varepsilon\rangle\vdash_{M_1,\,1}\langle q_3,\,u',\,\varepsilon\rangle\vdash_{M_1}\langle q_2,\,\varepsilon,\,z\rangle$
+			      \item Предположение $\langle(q_3,\,p_1),\,u',\,\varepsilon\rangle \vdash \langle(q_2,\,p_2),\,\varepsilon,\,v\rangle$
+			      \item Тогда
+			            \[
+				            \langle(q_1,\,p_1),\,au',\,\varepsilon\rangle\vdash_1\langle(q_3,\,p_1),\,u',\,\varepsilon\rangle
+			            \]
+		      \end{itemize}
 		\item Переход: пишем букву $c$ из $v$:
-		\begin{itemize}
-			\item $\langle p_1,\,z,\,\varepsilon\rangle\vdash_{M_2,\,1}\langle p_3,\,z,\,c\rangle\vdash_{M_2}\langle p_2,\,\varepsilon,\,cv'\rangle$
-			\item Предположение $\langle(q_1,\,p_3),\,u,\,\varepsilon\rangle\vdash\langle(q_2,\,p_2),\,\varepsilon,\,v'\rangle$
-			\item Тогда
-			\[
-				\langle(q_1,\,p_1),\,u,\,\varepsilon\rangle\vdash_1\langle(q_1,\,p_3),\,u,\,c\rangle\vdash\langle(q_2,\,p_2),\,\varepsilon,\,cv'\rangle
-			\]
-		\end{itemize}
+		      \begin{itemize}
+			      \item $\langle p_1,\,z,\,\varepsilon\rangle\vdash_{M_2,\,1}\langle p_3,\,z,\,c\rangle\vdash_{M_2}\langle p_2,\,\varepsilon,\,cv'\rangle$
+			      \item Предположение $\langle(q_1,\,p_3),\,u,\,\varepsilon\rangle\vdash\langle(q_2,\,p_2),\,\varepsilon,\,v'\rangle$
+			      \item Тогда
+			            \[
+				            \langle(q_1,\,p_1),\,u,\,\varepsilon\rangle\vdash_1\langle(q_1,\,p_3),\,u,\,c\rangle\vdash\langle(q_2,\,p_2),\,\varepsilon,\,cv'\rangle
+			            \]
+		      \end{itemize}
 		\item Переход: пишем $b$ в $z$ и читаем из $z$:
-		\begin{itemize}
-			\item По условию $\langle q_1,\,u,\,\varepsilon\rangle\vdash_{M_1,\,1}\langle q_3,\,u,\,b\rangle\vdash_{M_1}\langle q_2,\,\varepsilon,\, bz'\rangle$ и $\langle p_1,\,bz',\,\varepsilon\rangle\vdash_{M_2,\,1}\langle p_3,\,z',\,\varepsilon\rangle\vdash_{M_2}\langle p_2,\,\varepsilon,\,v\rangle$
-			\item По предположению индукции: $\langle(q_3,\,p_3),\,u,\,\varepsilon\rangle\vdash\langle(q_2,\,p_2),\,\varepsilon,\,v\rangle$
-			\item Тогда 
-			\[
-				\langle(q_1,\,p_1),\,u,\,\varepsilon\rangle\vdash_M\langle(q_3,\,p_3),\,u,\,\varepsilon\rangle
-			\]
-		\end{itemize}
+		      \begin{itemize}
+			      \item По условию $\langle q_1,\,u,\,\varepsilon\rangle\vdash_{M_1,\,1}\langle q_3,\,u,\,b\rangle\vdash_{M_1}\langle q_2,\,\varepsilon,\, bz'\rangle$ и $\langle p_1,\,bz',\,\varepsilon\rangle\vdash_{M_2,\,1}\langle p_3,\,z',\,\varepsilon\rangle\vdash_{M_2}\langle p_2,\,\varepsilon,\,v\rangle$
+			      \item По предположению индукции: $\langle(q_3,\,p_3),\,u,\,\varepsilon\rangle\vdash\langle(q_2,\,p_2),\,\varepsilon,\,v\rangle$
+			      \item Тогда
+			            \[
+				            \langle(q_1,\,p_1),\,u,\,\varepsilon\rangle\vdash_M\langle(q_3,\,p_3),\,u,\,\varepsilon\rangle
+			            \]
+		      \end{itemize}
 	\end{itemize}
 	Теперь, зная это прекрасное свойство, докажем теорему:
 	\begin{itemize}
 		\item $(u,\, v) \in \psi(M)$
 		\item $\exists q \in F_1,\, p \in F_2 :\: \langle(p_0,\,q_0),\,u,\,\varepsilon\rangle\vdash\langle(q,\,p),\,\varepsilon,\,v\rangle$
 		\item $\exists q \in F_1,\, p \in F_2,\, z \in \Gamma^*$:
-		\begin{align*}
-			\langle q_0,\,u,\,\varepsilon\rangle\vdash_{M_1}\langle q,\,\varepsilon,\,z\rangle\\
-			\langle p_0,\,z,\,\varepsilon\rangle\vdash_{M_2}\langle p,\,\varepsilon,\,v\rangle
-		\end{align*}
+		      \begin{align*}
+			      \langle q_0,\,u,\,\varepsilon\rangle\vdash_{M_1}\langle q,\,\varepsilon,\,z\rangle \\
+			      \langle p_0,\,z,\,\varepsilon\rangle\vdash_{M_2}\langle p,\,\varepsilon,\,v\rangle
+		      \end{align*}
 		\item $\exists z \in \Gamma^* :\: (u,\,z) \in \psi_1,\, (z,\, v) \in \psi_2$
 		\item $(u,\,v) \in \psi_2\circ\psi_1$
 	\end{itemize}
@@ -2000,9 +2025,9 @@
 	\[
 		\phi(\varepsilon) = \varepsilon ;\;\;\;\; \phi(a) = b \lor \varepsilon
 	\]
-	Решим уравнение $\phi(x) = \varepsilon$, пусть $x = a_1\cdots a_n$. Тогда в силу того, что $\phi$ -- гомоморфизм всеми решениями будут $(a_1 + \cdots + a_n)^* = \Theta_\varepsilon^*$, то есть мы доказали, что образ $\varepsilon$ можно расписать регулярным выражением.
+	Решим уравнение $\phi(x) = \varepsilon$, пусть $x = a_1\cdots a_n$. Тогда в силу того, что $\phi$ -- гомоморфизм всеми решениями будут $(a_1 + \cdots + a_n)^* = \Theta_\varepsilon^*$, где $\Theta_X := \{a \in \Sigma \:\vert\: \phi(a) = X\}$, то есть мы доказали, что образ $\varepsilon$ можно расписать регулярным выражением.
 
-	Осталось решить $\phi(y) = b$. Для этого введём $\Theta_b$ -- символы $x \in b :\: \phi(x) = b$. Тогда прообраз $b$ задаётся регулярным выражением $\Theta_\varepsilon^*\Theta_b\Theta_\varepsilon^*$.
+	Осталось решить $\phi(y) = b$. Для этого введём $\Theta_b$. Тогда прообраз $b$ задаётся регулярным выражением $\Theta_\varepsilon^*\Theta_b\Theta_\varepsilon^*$.
 
 	То есть когда мы будем брать прообраз какого-то слова из регулярного языка $L$, то все $\varepsilon,\, b$ заменим по правилам выше на регулярные выражения и победим.
 
@@ -2019,7 +2044,7 @@
 \begin{proof}
 	Пусть $L(G) = L$ -- в нормальной форме Хомского. Вспомним решение уравнения $\phi(y) = b :\: y = \Theta^*_\varepsilon\Theta_b\Theta^*_\varepsilon$.
 
-	Будем рассматривать $\phi^{-1}(b)$, как грамматику:
+	Будем рассматривать $\phi^{-1}(b)$, как грамматику, выводящую прообразы данной буквы:
 	\[
 		G_b = \langle N_b,\, \overline{\Theta},\,S_b,\, P\rangle
 	\]
@@ -2046,7 +2071,7 @@
 	Пусть $\psi$ -- КП. Тогда
 	\begin{align*}
 		\exists p \: \forall (u,\,v) \in \psi :\: \vert u\vert + \vert v\vert \geq p :\: \exists x_1,\,y_1,\,z_1 \in \Sigma^* \: \exists x_2,\,y_2,\,z_2 \in \Gamma^* :\: u = x_1y_1z_1,\, v = x_2y_2z_2 \\
-		\vert y_1\vert + \vert y_2\vert > 0,\, \vert x_1y_1\vert+\vert x_2y_2\vert \leq p \\
+		\vert y_1\vert + \vert y_2\vert > 0,\, \vert x_1y_1\vert+\vert x_2y_2\vert \leq p                                                                                                                \\
 		\forall k \in \mathbb{N} :\: (x_1y_1^kz_1,\, x_2y_2^kz_2) \in \psi
 	\end{align*}
 \end{lemma}
