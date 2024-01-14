@@ -110,7 +110,7 @@
 \begin{definition}
 	$\vdash$ -- наименьшее рефлексивное транзитивное отношение над $Q \times \Sigma^*$, такое, что:
 	\[
-		\forall w \in \Sigma^*:\: (\langle q_1,\,w\rangle \to q_2) \in \Delta \Rightarrow \forall u \in \Sigma^*:\: \langle q_1,\,wu\rangle \vdash \langle q_2,\,u\rangle
+		\forall w \in \Sigma^*:\: \langle q_1,\,w\rangle \to q_2 \in \Delta \Rightarrow \forall u \in \Sigma^*:\: \langle q_1,\,wu\rangle \vdash \langle q_2,\,u\rangle
 	\]
 \end{definition}
 
@@ -147,7 +147,7 @@
 	В начале покажем, что $L(M) \subset L(M')$:
 	\begin{itemize}
 		\item $w \in L(M) \Rightarrow \exists q \in F:\: \langle q_0,\, w\rangle \vdash \langle q,\, \varepsilon\rangle$
-		\item $(\langle q,\, \varepsilon\rangle \to q_f) \in \Delta' \Rightarrow \langle q,\, \varepsilon\rangle \vdash_{M'} \langle q_f,\, \varepsilon\rangle$
+		\item $\langle q,\, \varepsilon\rangle \to q_f \in \Delta' \Rightarrow \langle q,\, \varepsilon\rangle \vdash_{M'} \langle q_f,\, \varepsilon\rangle$
 		\item Значит $\langle q_0,\, w\rangle \vdash_{M'} \langle q,\, \varepsilon\rangle \vdash_{M'} \langle q_f,\, \varepsilon\rangle \Rightarrow w \in L(M')$
 	\end{itemize}
 	Теперь докажем обратное включение $L(M') \subset L(M)$:
@@ -162,7 +162,7 @@
 \begin{proposition}
 	Для любого автоматного языка $L$ существует НКА $M = \langle Q,\,\Sigma,\, \Delta,\, q_0,\, F \rangle$, такой что $L = L(M)$ и:
 	\[
-		\forall (\langle q_1,\, w\rangle \to q_2) \in \Delta :\: |w| \leq 1
+		\forall \langle q_1,\, w\rangle \to q_2 \in \Delta :\: |w| \leq 1
 	\]
 \end{proposition}
 
@@ -173,7 +173,7 @@
 \begin{proposition}
 	Для любого НКА $M = \langle Q,\,\Sigma,\, \Delta,\, q_0,\, F \rangle$ существует НКА $M' = \langle Q,\,\Sigma,\, \Delta',\, q_0,\, F' \rangle$, такой, что $L(M) = L(M')$ и:
 	\[
-		\forall (\langle q_1,\, w\rangle \to q_2) \in \Delta' :\: |w| = 1
+		\forall \langle q_1,\, w\rangle \to q_2 \in \Delta' :\: |w| = 1
 	\]
 \end{proposition}
 
@@ -182,7 +182,7 @@
 
 	Тогда новое множество переходов определим, как:
 	\[
-		\Delta' = \{\langle q_1,\, a\rangle \to q_2 \:|\: \exists q_3 \in \Delta(q_1,\,\varepsilon) :\: (\langle q_3,\, a\rangle \to q_2) \in \Delta\}
+		\Delta' = \{\langle q_1,\, a\rangle \to q_2 \:|\: \exists q_3 \in \Delta(q_1,\,\varepsilon) :\: \langle q_3,\, a\rangle \to q_2 \in \Delta\}
 	\]
 	Новым же множеством завершающих состояний будет:
 	\[
@@ -238,7 +238,7 @@
 \begin{definition}
 	НКА $M = \langle Q,\,\Sigma,\, \Delta,\, q_0,\, F \rangle$ -- детерминированный, если выполнено:
 	\begin{itemize}
-		\item $\forall (\langle q_1,\, w\rangle \to q_2) \in \Delta :\: |w| = 1$
+		\item $\forall \langle q_1,\, w\rangle \to q_2 \in \Delta :\: |w| = 1$
 		\item $\forall a \in \Sigma,\, q \in Q :\: |\Delta(q,\, a)| \leq 1$
 	\end{itemize}
 \end{definition}
@@ -300,12 +300,12 @@
 \subsection{Про автоматные языки}
 \subsubsection*{Свойства класса автоматных языков. Замкнутость относительно булевых операций.}
 \begin{definition}
-	Итерацией Клини для языка $L$ называется операция:
+	\textbf{Итерацией Клини} для языка $L$ называется операция:
 	\[L^* = \bigcup_{k = 0}^\infty L^k\]
 \end{definition}
 
 \begin{definition}
-	Полный ДКА -- ДКА, для которого выполнено:
+	\textbf{Полный ДКА} -- ДКА, для которого выполнено:
 	\[
 		\forall a \in \Sigma,\, q \in Q :\: |\Delta(q,\, a)| = 1
 	\]
@@ -364,6 +364,8 @@
 
 \subsubsection*{Теорема Клини о совпадении классов регулярных и автоматных языков.}
 \begin{theorem}
+	Клини.
+	
 	Множество регулярных языков совпадает с множеством автоматных языков.
 \end{theorem}
 \begin{proof}
@@ -621,6 +623,8 @@
 
 \subsubsection*{Теорема Майхилла-Нероуда}
 \begin{theorem}
+	Майхилла-Нероуда.
+
 	$L$ -- автоматный $\Leftrightarrow L$ содержит конечное количество классов эквивалентности $\Sigma^* / \sim_L$
 \end{theorem}
 
@@ -672,7 +676,7 @@
 
 \subsubsection*{Язык, задаваемый грамматикой}
 \begin{definition}
-	Отношением выводимости $\vdash_G$ называется наименьшее рефлексивное транзитивное отношение:
+	\textbf{Отношением выводимости} $\vdash_G$ называется наименьшее рефлексивное транзитивное отношение:
 	\begin{align*}
 		\forall (\alpha \to \beta) \in P,\, \forall \phi,\, \psi \in (N \cup \Sigma)^* :\: \phi\alpha\psi \vdash_G \phi\beta\psi
 	\end{align*}
@@ -736,7 +740,7 @@
 		      \end{align*}
 		\item Для перехода представим произвольное слово $w = vu,\, u \in \Sigma$:
 		      \begin{align*}
-			      \langle q_1,\, w\rangle \vdash_M \langle q_3,\, v\rangle \vdash_{M,\, 1} \langle q_2,\, \varepsilon\rangle \Rightarrow q_1 \vdash_G uq_3,\, q_3 \vdash_G vq_2 \Rightarrow q_1 \vdash_G uvq_2 = wq_2
+			      \langle q_1,\, w\rangle \vdash_M \langle q_3,\, u\rangle \vdash_{M,\, 1} \langle q_2,\, \varepsilon\rangle \Rightarrow q_1 \vdash_G uq_3,\, q_3 \vdash_G vq_2 \Rightarrow q_1 \vdash_G uvq_2 = wq_2
 		      \end{align*}
 	\end{itemize}
 	Теперь второй пункт:
@@ -1132,7 +1136,7 @@
 \end{definition}
 
 \begin{definition}
-	$\vdash$ -- наименьшее рефлексивное транзитивное отношение, что
+	\textbf{Отношение выводимости} $\vdash$ -- наименьшее рефлексивное транзитивное отношение, что
 	\[
 		\forall\langle q_1,\,u,\,\alpha\rangle \to \langle q_2,\, \beta\rangle \in \Delta :\: \forall v \in \Sigma^*,\, \eta \in \Gamma^* \: \langle q_1,\, uv,\, \eta\alpha\rangle \vdash \langle q_2,\, v,\, \eta\beta\rangle
 	\]
@@ -1649,7 +1653,7 @@
 	\[
 		N = \vert Q\vert(1 + \vert \Gamma\vert + \vert\Gamma\vert^2 +\cdots + \vert\Gamma\vert^{\vert Q\vert\vert\Gamma\vert l})
 	\]
-	где второй множитель обозначает максимальное число стеков длины $\leq \vert Q\vert\vert\Gamma\vert l$. Тогда по принципу дирихле найдётся одна конфигурация.
+	где второй множитель обозначает максимальное число стеков длины $\leq \vert Q\vert\vert\Gamma\vert l$. Тогда по принципу Дирихле найдётся одна конфигурация.
 
 	Иначе
 	\[
@@ -1751,7 +1755,7 @@
 \begin{proposition}
 	Для любого КПтеля существует эквивалентный КПтель, для которого выполнено соотношение:
 	\[
-		\forall(\langle q_1,\,u\rangle\to\langle q_2,\, v\rangle) \in \Delta :\: \vert u\vert + \vert v\vert = 1
+		\forall\langle q_1,\,u\rangle\to\langle q_2,\, v\rangle \in \Delta :\: \vert u\vert + \vert v\vert = 1
 	\]
 \end{proposition}
 
