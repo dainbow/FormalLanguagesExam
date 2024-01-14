@@ -1402,7 +1402,7 @@
 	Однако в лоб применить алгоритм не получится: имеем плохие переходы, так что будем заменять
 	\begin{enumerate}
 		\item $\langle q_0,\,\varepsilon,\, CBa\rangle \to \langle q_0,\, A\rangle$ скомбинируем с $\langle q_0,\, a,\, \varepsilon\rangle\to\langle q_0,\,a\rangle$ и получим $\langle q_0,\, a,\,CB\rangle\to\langle q_0,\, A\rangle$
-		\item Далее комбинируем $a:\:\varepsilon:\: a,\, \varepsilon :\: CBa:\: S,\, \varepsilon:\: S:\: \varepsilon$ в $a :\: CB :\: \varepsilon$
+		\item Далее комбинируем $a:\:\varepsilon:\: a;\; \varepsilon :\: CBa:\: S;\; \varepsilon:\: S:\: \varepsilon$ в $a :\: CB :\: \varepsilon$
 		\item Осталось избавиться от $S \to \varepsilon$, для этого просто считаем $q_0 \in F$.
 	\end{enumerate}
 
@@ -1625,13 +1625,13 @@
 	\]
 \end{definition}
 
-\begin{example}
+\begin{note}
 	Доллар в конце важен, так как иначе детерминированный язык
 	\[
 		L = \{a^nb^m \:\vert\: n = m \lor m = 0\}
 	\]
 	не получилось бы выразить ДМП-автоматом.
-\end{example}
+\end{note}
 
 \begin{lemma}
 	Любой ДМП-автомат эквивалентен ДМП автомату с переходами
